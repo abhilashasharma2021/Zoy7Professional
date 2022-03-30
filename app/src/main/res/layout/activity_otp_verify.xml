@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.OtpVerifyActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivVerify"
+            style="@style/ImageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_verify"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvVerify"
+            style="@style/Headline4"
+            android:layout_width="190dp"
+            android:text="@string/otp_verification"
+            android:textAlignment="center"
+            android:textColor="?attr/colorPrimary"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/ivVerify"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvEnterOtp"
+            style="@style/Body1"
+            android:text="Enter OTP Send to +91 9898982299"
+            android:layout_marginTop="@dimen/default_margin"
+            app:layout_constraintTop_toBottomOf="@+id/tvVerify"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/llReceiveOTP"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingHorizontal="15dp"
+            android:paddingBottom="20dp"
+            tools:ignore="MissingConstraints">
+
+
+            <com.zoyo7professional.views.XEditText
+                android:id="@+id/etOne"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edt_background"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxLength="1"
+                android:paddingBottom="10dp"
+                android:textAppearance="@style/TextSmallBlack"
+                android:fontFamily="@font/roboto_regular" />
+
+            <com.zoyo7professional.views.XEditText
+                android:id="@+id/etTwo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/edt_background"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxLength="1"
+                android:paddingBottom="10dp"
+                android:textAppearance="@style/TextSmallBlack"
+                android:fontFamily="@font/roboto_regular" />
+
+            <com.zoyo7professional.views.XEditText
+                android:id="@+id/etThree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/edt_background"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxLength="1"
+                android:paddingBottom="10dp"
+                android:textAppearance="@style/TextSmallBlack"
+                android:fontFamily="@font/roboto_regular" />
+
+            <com.zoyo7professional.views.XEditText
+                android:id="@+id/etFour"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/edt_background"
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:maxLength="1"
+                android:paddingBottom="10dp"
+                android:textAppearance="@style/TextSmallBlack"
+                android:fontFamily="@font/roboto_regular"/>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llReceiveOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/btVerify"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Body2"
+                android:text="@string/didn_t_receive_otp"
+                android:paddingHorizontal="5dp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTimer"
+                style="@style/Body2"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btVerify"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            app:cornerRadius="25dp"
+            android:backgroundTint="@color/blue_200"
+            android:text="@string/verify"
+            android:layout_marginBottom="80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/progressbar"
+        android:visibility="gone"></ProgressBar>
+
+</RelativeLayout>

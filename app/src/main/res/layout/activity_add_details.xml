@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AddDetailsActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/blue_700"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:autoMirrored="true"
+                android:padding="6dp"
+                android:src="@drawable/leftarrow" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Body3"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/ivBack"
+                android:text="@string/add_details"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/normal_margin"
+                android:clipToPadding="false"
+
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="80dp"
+                    android:id="@+id/rlProfile"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/circleblue">
+
+
+                    </androidx.appcompat.widget.AppCompatImageView>
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivProfile"
+                        style="@style/ImageViewRound"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:scaleType="fitXY" />
+
+                </RelativeLayout>
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivPickImage"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/camera"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/small_paging"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginTop="-60dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Body3"
+                    android:text="@string/name"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/extra_large_margin"
+                    android:textColor="?attr/colorPrimary"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCard"
+                    android:hint="xyz abc"
+                    android:id="@+id/etName"
+                    android:inputType="textPersonName"
+                    android:layout_margin="@dimen/small_margin" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Body3"
+                    android:text="@string/email"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:textColor="?attr/colorPrimary"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCard"
+                    android:hint="abc@xyz.fgh"
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/etEmail"
+                    android:layout_margin="@dimen/small_margin" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Body3"
+                    android:text="@string/gender"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:textColor="?attr/colorPrimary"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdGroup"
+                    android:layout_margin="@dimen/small_margin"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/RadioButton"
+                        android:text="@string/male"
+                        android:buttonTint="?attr/colorPrimary"
+                        android:paddingHorizontal="@dimen/default_padding"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/RadioButton"
+                        android:text="@string/female"
+                        android:buttonTint="?attr/colorPrimary"
+                        android:paddingHorizontal="@dimen/default_padding"/>
+
+
+                </RadioGroup>
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Body3"
+                    android:text="@string/city_state"
+                    android:textStyle="bold"
+
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:textColor="?attr/colorPrimary"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        style="@style/Spinner"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/colorOnPrimary"
+                        android:elevation="@dimen/card_elevation"
+                        android:id="@+id/spState"
+                        android:layout_margin="@dimen/small_margin" />
+
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        style="@style/Spinner"
+                        android:layout_weight="1"
+                        android:id="@+id/spCity"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/colorOnPrimary"
+                        android:elevation="@dimen/card_elevation"
+                        android:layout_margin="@dimen/small_margin"
+                        />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Body3"
+                    android:text="@string/address"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:textColor="?attr/colorPrimary"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCard"
+                    android:minLines="4"
+                    android:inputType="text"
+                    android:layout_height="100dp"
+                    android:gravity="start"
+                    android:id="@+id/etAddress"
+                    android:hint="Landmark, Near by, Road Name .............."
+                    android:layout_margin="@dimen/small_margin" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Body3"
+                    android:text="@string/pincode"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:textColor="?attr/colorPrimary"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCard"
+                    android:layout_width="200dp"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:hint="462021"
+                    android:id="@+id/etPin"
+                    android:layout_margin="@dimen/small_margin" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btUpdate"
+                    style="@style/Button"
+                    android:layout_width="200dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center"
+                    android:onClick="@{viewModel::onUpdateClick}"
+                    android:layout_marginBottom="@dimen/extra_margin"
+                    android:text="@string/update" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/progressbar"
+        android:visibility="gone"/>
+</RelativeLayout>

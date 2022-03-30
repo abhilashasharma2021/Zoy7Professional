@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navHome"
+        android:icon="@drawable/ic_dashboard"
+        android:title="@string/nav_home" />
+    <!--<item
+        android:id="@+id/navServices"
+        android:icon="@drawable/ic_rewards"
+        android:title="@string/nav_service" />
+-->
+    <!--<item
+        android:id="@+id/navRewards"
+        android:icon="@drawable/ic_rewards"
+        android:title="@string/nav_rewards" />
+-->
+    <item
+        android:id="@+id/navAppointment"
+        android:icon="@drawable/ic_appointment"
+        android:title="@string/nav_appointment" />
+
+    <item
+        android:id="@+id/navAccount"
+        android:icon="@drawable/ic_account"
+        android:title="@string/nav_profile" />
+
+</menu>

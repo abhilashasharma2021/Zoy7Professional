@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AddMoneyActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:autoMirrored="true"
+            android:padding="6dp"
+            android:src="@drawable/blackarrow" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/Body3"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/ivBack"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Add Money"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rlHeader">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+
+               <ImageView
+                   android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   android:layout_alignParentEnd="true"
+                   android:layout_marginEnd="10dp"
+                   android:autoMirrored="true"
+                   android:padding="6dp"
+                   android:src="@drawable/wallet" />
+
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+                  <com.google.android.material.textview.MaterialTextView
+                      style="@style/Body3"
+                      android:layout_marginStart="20dp"
+                      android:layout_marginTop="15dp"
+                      android:fontFamily="@font/roboto_medium"
+                      android:text="@string/add_money_to"
+                      android:textSize="14sp" />
+
+                  <com.google.android.material.textview.MaterialTextView
+                      style="@style/Body3"
+
+                      android:layout_marginStart="20dp"
+                      android:fontFamily="@font/roboto_medium"
+                      android:text="@string/my_wallet"
+                      android:textSize="14sp"
+                      android:textStyle="bold" />
+
+              </LinearLayout>
+
+
+           </RelativeLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="₹ 2100"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btVerify"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/blue_200"
+                android:text="@string/proceed_to_add_money"
+                android:textAllCaps="false"
+                app:cornerRadius="5dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

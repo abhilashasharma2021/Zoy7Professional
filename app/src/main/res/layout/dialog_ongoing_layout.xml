@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:id="@+id/ivCancel"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="25dp"
+                android:src="@drawable/cross" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card"
+                android:layout_width="80dp"
+                android:layout_below="@+id/ivCancel"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/download"/>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Post-wax lotion"
+                android:textSize="14sp"
+                android:textStyle="bold">
+
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/txName"
+                android:id="@+id/rl"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/ratingStar"
+                    style="?attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="false"
+                    android:visibility="gone"
+                    android:numStars="5"
+                    android:saveEnabled="true"
+                    android:theme="@style/RatingBar">
+
+                </androidx.appcompat.widget.AppCompatRatingBar>
+
+                <ImageView
+                    android:id="@+id/ivRating"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/star" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_toEndOf="@+id/ivRating"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="4.2 Rating"
+                    android:textSize="10dp">
+
+
+                </com.google.android.material.textview.MaterialTextView>
+
+
+
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/rl"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\nAenean commodo ligula eget dolor. Aenean massa.\nCum sociis natoque penatibus et magnis"
+                android:textAlignment="center"
+                android:textSize="13sp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/loti_animation"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_below="@+id/tx"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="right.json"
+                app:lottie_loop="true" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btOk"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/loti_animation"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/ongoing"
+                android:textAllCaps="false"
+                android:textSize="13sp"
+                app:cornerRadius="5dp" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

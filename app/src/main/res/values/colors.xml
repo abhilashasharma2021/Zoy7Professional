@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_200">#42C1EC</color>
+    <color name="blue_500">#08B2EC</color>
+    <color name="blue_700">#0C7DC2</color>
+    <color name="violent_200">#7137C8</color>
+    <color name="violent_700">#421782</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="gray">#838C8C8C</color>
+    <color name="light_gray">#ECECEC</color>
+    <color name="light_grey">#DADCDE</color>
+    <color name="dark_gray">#706F6F</color>
+
+    <color name="orange">#FF5722</color>
+    <color name="green">#04DD20</color>
+
+    <color name="lite_sky">#F3F7F8</color>
+
+    <color name="ucrop_color_toolbar">@color/blue_500</color>
+    <color name="ucrop_color_statusbar">@color/blue_700</color>
+    <color name="ucrop_color_widget_active">@color/blue_500</color>
+
+    <array name="array1_dot_active">
+        <item>@color/blue_700</item>
+        <item>@color/blue_700</item>
+        <item>@color/blue_700</item>
+        <item>@color/blue_700</item>
+        <item>@color/blue_700</item>
+    </array>
+
+    <array name="array1_dot_inactive">
+        <item>@color/gray</item>
+        <item>@color/gray</item>
+        <item>@color/gray</item>
+        <item>@color/gray</item>
+        <item>@color/gray</item>
+    </array>
+</resources>

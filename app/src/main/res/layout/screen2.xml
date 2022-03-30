@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <RelativeLayout
+                android:layout_width="300dp"
+                android:background="@drawable/bgshape"
+
+                android:layout_height="300dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/slide_image"
+                    style="@style/ImageView"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="45dp"
+
+                    android:src="@drawable/slideimg2" />
+
+
+            </RelativeLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Headline6"
+                android:layout_width="200dp"
+                android:id="@+id/slide_heading1"
+                android:gravity="center"
+                android:text="Facilities at \n Door Step"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Body2"
+                android:gravity="center"
+                android:id="@+id/slide_descp1"
+                android:padding="@dimen/default_padding"
+                android:text="Lorem Ipsum is simply dummy text of the \nprinting and typesetting industry. Lorem \nIpsum has been the industry's"
+                android:textColor="@color/gray"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

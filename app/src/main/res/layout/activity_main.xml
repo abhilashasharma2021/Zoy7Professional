@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cardBottom" />
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:elevation="20dp">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="6dp"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/menu_home" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="start">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/blue_700"
+                    android:layout_height="190dp">
+
+                    <ImageView
+                        android:id="@+id/ivEdit"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/ic_edit" />
+
+                    <View
+                        android:layout_width="25dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_below="@+id/ivEdit"
+                        android:layout_alignParentEnd="true"
+                        android:background="@color/white"
+                        android:layout_height="3dp"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivProfile"
+                        style="@style/ImageViewRound"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginTop="20dp"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/small_paging"
+                        android:scaleType="fitXY"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_profile"
+                        app:strokeColor="@color/white"
+                        app:strokeWidth="5dp" />
+
+                    <TextView
+
+                        android:id="@+id/txtname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivProfile"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:text="Harsh"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                    <TextView
+
+                        android:id="@+id/txSpecialist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtname"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:text="Makeup Specialist"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+                    <RelativeLayout
+                        android:id="@+id/rl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txSpecialist"
+                        android:layout_centerHorizontal="true">
+
+
+                        <ImageView
+                            android:id="@+id/ivRating"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/star" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/txRating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="4dp"
+                            android:layout_toEndOf="@+id/ivRating"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="4.2 Rating"
+                            android:textColor="@color/white"
+                            android:textSize="10dp">
+
+
+                        </com.google.android.material.textview.MaterialTextView>
+
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/rlHome"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:paddingLeft="10dp">
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_dashboard" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/roboto_regular"
+                            android:paddingLeft="60dp"
+                            android:text="@string/nav_home"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:id="@+id/v8"
+                        android:background="@color/gray" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlBooking"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:paddingLeft="10dp">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_appointment" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/roboto_regular"
+                            android:paddingLeft="60dp"
+                            android:text="@string/nav_booking"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@color/gray" />
+                    <RelativeLayout
+                        android:id="@+id/rlHelp"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:paddingLeft="10dp">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_help" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/roboto_regular"
+                            android:paddingLeft="60dp"
+                            android:text="@string/nav_help"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@color/gray" />
+                    <RelativeLayout
+                        android:id="@+id/rlTerm"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:paddingLeft="10dp">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_terms" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/roboto_regular"
+                            android:paddingLeft="60dp"
+                            android:text="@string/nav_terms_policy"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@color/gray" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlLogout"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:paddingLeft="10dp">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_exit" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/roboto_regular"
+                            android:paddingLeft="60dp"
+                            android:text="@string/nav_logout"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@color/gray" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>
