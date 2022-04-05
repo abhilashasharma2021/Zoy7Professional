@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/blue_bg.xml" value="0.158" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/bullet.xml" value="0.18" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/circle_primary.xml" value="0.163" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/edittext_bg.xml" value="0.1775" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/edt_background.xml" value="0.18" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/error_design.xml" value="0.1935" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/green_bg.xml" value="0.158" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/greybg.xml" value="0.171" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/ic_account.xml" value="0.18" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/ic_appointment.xml" value="0.18" />
@@ -20,6 +22,7 @@
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/ic_rewards.xml" value="0.18" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/ic_terms.xml" value="0.18" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/login_btn_bg.xml" value="0.1775" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/orange_bg.xml" value="0.158" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/drawable/progressbar.xml" value="0.1935" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_add_details.xml" value="0.25" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_add_money.xml" value="0.25" />
@@ -27,21 +30,23 @@
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_intro_view_pager.xml" value="0.25" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_login.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_my_booking_history.xml" value="0.25" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_my_booking_history.xml" value="0.264" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_otp_verify.xml" value="0.25" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_privacy_policy.xml" value="0.2359375" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_request.xml" value="0.264" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_splash.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/activity_term_and_condition.xml" value="0.25" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/dialog_accept_layout.xml" value="0.25" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/dialog_accept_layout.xml" value="0.264" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/dialog_logout.xml" value="0.2359375" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/dialog_ongoing_layout.xml" value="0.2359375" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/dialog_request_cancel_layout.xml" value="0.2359375" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/fragment_edit_profile.xml" value="0.25" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/item_intro_layout.xml" value="0.2359375" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/layout_header.xml" value="0.2359375" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/layout_toolbar.xml" value="0.264" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/rowshoworderlayout.xml" value="0.2359375" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/rv_cancel_policy_layout.xml" value="0.25" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/screen1.xml" value="0.25" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/screen2.xml" value="0.2359375" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/Zoy7Professional/app/src/main/res/layout/screen3.xml" value="0.2359375" />

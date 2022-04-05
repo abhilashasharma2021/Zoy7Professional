@@ -1,10 +1,14 @@
 package com.zoyo7professional.activity;
 
+import static com.zoyo7professional.ApiData.API.cancel_policy;
+import static com.zoyo7professional.ApiData.API.otpVerify;
 import static com.zoyo7professional.ApiData.API.reasonForCancel;
 import static com.zoyo7professional.ApiData.API.selectstates;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -17,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,7 +32,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.zoyo7professional.ApiData.API;
 import com.zoyo7professional.MainActivity;
 import com.zoyo7professional.R;
+import com.zoyo7professional.adaper.CancelPolicyAdapter;
 import com.zoyo7professional.databinding.ActivityRequestBinding;
+import com.zoyo7professional.model.CancelPolicyData;
 import com.zoyo7professional.utilities.SingletonRequestQueue;
 
 import org.json.JSONArray;
@@ -44,6 +51,9 @@ ActivityRequestBinding binding;
     ArrayList<String> arrayListReason;
     ArrayAdapter<String> adapterReason;
     String strReasonId="";
+
+    private CancelPolicyAdapter adapter;
+    private ArrayList<CancelPolicyData> policyList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +80,8 @@ ActivityRequestBinding binding;
             }
         });
 
-
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(RequestCancelActivity.this, RecyclerView.VERTICAL, false);
+        binding.rvPolicy.setLayoutManager(mLayoutManager);
 
         binding.spReason.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -86,7 +97,7 @@ ActivityRequestBinding binding;
 
             }
         });
-
+        reason_CancelPolicy();
         reason_Cancel();
 
     }
@@ -179,6 +190,79 @@ ActivityRequestBinding binding;
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
                 map.put("action", reasonForCancel);
+
+
+                return map;
+            }
+        };
+        queue.add(request);
+    }
+
+
+    public void reason_CancelPolicy() {
+
+
+        StringRequest request = new StringRequest(Request.Method.POST, API.BASE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("djfkdj", response);
+                try {
+
+                    JSONObject jsonObject = new JSONObject(response);
+
+
+                    if (jsonObject.has("result")) {
+
+                        String msg = jsonObject.getString("result");
+                        if (msg.equals("true")) {
+
+                            String data = jsonObject.getString("data");
+
+
+                            Log.e("chdeck", data );
+                           JSONArray jsonArray=new JSONArray(data);
+                            policyList=new ArrayList<>();
+
+                            for (int i = 0; i <jsonArray.length() ; i++) {
+                                CancelPolicyData policyData=new CancelPolicyData();
+                                JSONObject object=jsonArray.getJSONObject(i);
+                                policyData.setPolicy(object.getString("tnc"));
+                                policyList.add(policyData);
+
+
+
+
+
+                            }
+
+                            adapter = new CancelPolicyAdapter(RequestCancelActivity.this, policyList);
+                            binding.rvPolicy.setAdapter(adapter);
+                        }
+
+
+                    }
+
+
+                } catch (Exception ex) {
+                    Log.e("jgvkdfj", ex.getMessage());
+
+                }
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("thrtfghfg",error.getMessage());
+
+            }
+
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("action",cancel_policy);
 
 
                 return map;

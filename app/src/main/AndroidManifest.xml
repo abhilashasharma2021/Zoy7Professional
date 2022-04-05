@@ -56,7 +56,6 @@
             android:exported="false" >
 
 
-
         </activity>
         <activity
             android:name=".activity.AddMoneyActivity"
@@ -69,17 +68,26 @@
             android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="false" />
+            android:exported="false" >
+
+
+        </activity>
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:exported="false">
+
+        </activity>
     </application>
 
 </manifest>

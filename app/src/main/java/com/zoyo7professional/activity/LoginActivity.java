@@ -71,22 +71,29 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 stMobile = binding.etMobile.getText().toString().trim();
 
+/*
                 if (binding.cAgree.isChecked()) {
                     stCheck = "yes";
                 } else {
-                    Toast.makeText(LoginActivity.this, "Please check Term & Conditions", Toast.LENGTH_SHORT).show();
-
+                    stCheck="stCheck";
                 }
+*/
 
                 if (TextUtils.isEmpty(stMobile)) {
                     binding.etMobile.setError("Mobile Number Must Required !");
                     binding.etMobile.requestFocus();
                 } else if (stMobile.length() < 10) {
                     binding.etMobile.setError("Please enter atleast 10 digit mobile number");
-                } else {
+                    binding.etMobile.requestFocus();
+                }
+
+                else if (!binding.cAgree.isChecked()){
+                    Toast.makeText(LoginActivity.this, "Please accept term and condition", Toast.LENGTH_SHORT).show();
+
+                }else {
                     InternetConnectionInterface connectivity = new InternetConnectivity();
                     if (connectivity.isConnected(getApplicationContext())) {
-                        sendOtp(stMobile);
+                        sendOtp();
                     } else {
                         Toast.makeText(LoginActivity.this, "Please check internet connection", Toast.LENGTH_SHORT).show();
                     }
@@ -165,7 +172,7 @@ public class LoginActivity extends AppCompatActivity {
 */
 
 
-    public void sendOtp(String stMobile) {
+    public void sendOtp() {
 
         binding.progressBar.setVisibility(View.VISIBLE);
 
@@ -236,7 +243,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        request.setRetryPolicy(new DefaultRetryPolicy(10000, 1, 1.0f));
+
         queue.add(request);
 
 

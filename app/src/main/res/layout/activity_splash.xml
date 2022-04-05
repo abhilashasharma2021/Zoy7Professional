@@ -73,4 +73,33 @@
 
         </RelativeLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/white">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_centerInParent="true"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="noconnection.json"
+            app:lottie_loop="true" />
+
+
+        <Button
+            android:id="@+id/click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="@string/turn_on_internet_and_click_here"
+            android:layout_below="@+id/animationView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-70dp"/>
+
+    </RelativeLayout>
 </RelativeLayout>

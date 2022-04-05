@@ -43,7 +43,7 @@
 
     <string name="update">Update</string>
     <string name="mobilesys">Mobile Number :</string>
-
+    <string name="turn_on_internet_and_click_here">Turn On Internet And Click Here</string>
     <string name="search_for_society_landmark_locality">Search for society, landmark locality....</string>
     <string name="eg_netaji_marg_sector_18">eg. NETAJI MARG SECTOR 18</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -68,6 +68,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="add_details">Add Details</string>
+    <string name="completed">Completed</string>
 
     <string-array name="reason">
         <item>Reason for cancel</item>

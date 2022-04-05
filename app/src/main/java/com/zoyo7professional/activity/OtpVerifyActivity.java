@@ -1,6 +1,7 @@
 package com.zoyo7professional.activity;
 
 
+import static com.zoyo7professional.ApiData.API.login;
 import static com.zoyo7professional.ApiData.API.otpVerify;
 
 import android.content.Intent;
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -30,6 +33,7 @@ import com.zoyo7professional.utilities.InternetConnection.InternetConnectionInte
 import com.zoyo7professional.utilities.InternetConnection.InternetConnectivity;
 import com.zoyo7professional.utilities.SingletonRequestQueue;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -53,8 +57,16 @@ ActivityOtpVerifyBinding binding;
         get_otp = SharedHelper.getKey(getApplicationContext(), AppConstats.GET_OTP);
 
 
+        binding.tvEnterOtp.setText("Enter OTP Send to"+ mobile_No);
+
         queue = SingletonRequestQueue.getInstance(this).getRequestQueue();
 
+       binding.txResend.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               reSendOtp(mobile_No);
+           }
+       });
 
         binding.etOne.addTextChangedListener(new TextWatcher() {
             @Override
@@ -235,6 +247,85 @@ ActivityOtpVerifyBinding binding;
             }
         };
         queue.add(request);
+    }
+
+
+
+    public void reSendOtp(String stMobile) {
+
+        binding.progressBar.setVisibility(View.VISIBLE);
+
+        StringRequest request = new StringRequest(Request.Method.POST, API.BASE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("jfdkjgf", response);
+
+
+                try {
+
+                    binding.progressBar.setVisibility(View.GONE);
+
+                    JSONObject object = new JSONObject(response);
+
+                    if (object.has("result")) {
+
+                        String result = object.getString("result");
+
+
+                        if (result.equals("true")) {
+                            String data = object.getString("data");
+
+                            JSONObject jsonObject = new JSONObject(data);
+
+                            SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ID, jsonObject.getString("id"));
+                            SharedHelper.putKey(getApplicationContext(), AppConstats.MOBILE_NO, jsonObject.getString("mobile_no"));
+                            SharedHelper.putKey(getApplicationContext(), AppConstats.GET_OTP, jsonObject.getString("otp"));
+                            startActivity(new Intent(OtpVerifyActivity.this, OtpVerifyActivity.class));
+                            Toast.makeText(OtpVerifyActivity.this, object.getString("message"), Toast.LENGTH_SHORT).show();
+
+                        } else {
+
+                            Toast.makeText(OtpVerifyActivity.this, object.getString("message"), Toast.LENGTH_SHORT).show();
+                            binding.progressBar.setVisibility(View.GONE);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("kgjfdkjg", error.getMessage() + "");
+                binding.progressBar.setVisibility(View.GONE);
+
+                NetworkResponse response = error.networkResponse;
+                String errorMsg = "";
+                if (response != null && response.data != null) {
+                    String errorString = new String(response.data);
+                    Log.i("log error", errorString);
+                }
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Log.e("osdifopsif", stMobile);
+
+                Map<String, String> map = new HashMap<>();
+                map.put("action", login);
+                map.put("mobile_no", stMobile);
+
+                return map;
+            }
+        };
+
+        request.setRetryPolicy(new DefaultRetryPolicy(10000, 1, 1.0f));
+        queue.add(request);
+
+
     }
 }
 

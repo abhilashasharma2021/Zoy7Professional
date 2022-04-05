@@ -9,6 +9,10 @@ public class API {
     public static final String privacyPolicy = "privacy_policy";
     public static final String selectstates = "states";
     public static final String selectecity = "cities";
+    public static final String showProfile = "update_profile";
+    public static final String cancel_policy = "cancel_policy";
+    public static final String servicesStatus = "orders";
+
     public static final String reasonForCancel = "booking_cancellation_reasons";
 
 }

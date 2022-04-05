@@ -25,7 +25,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.zoyo7professional.activity.HelpActivity;
 import com.zoyo7professional.activity.MyBookingHistory;
 import com.zoyo7professional.activity.SplashActivity;
+import com.zoyo7professional.fragment.EditProfileFragment;
 import com.zoyo7professional.fragment.HomeFragment;
+import com.zoyo7professional.others.AppConstats;
+import com.zoyo7professional.others.SharedHelper;
 import com.zoyo7professional.utilities.InternetConnection.InternetConnectionInterface;
 import com.zoyo7professional.utilities.InternetConnection.InternetConnectivity;
 
@@ -128,9 +131,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
 
             case R.id.navAccount:
-/*
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new HelpFragment()).commit();
-*/
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new EditProfileFragment()).commit();
+
                 break;
 
 
@@ -150,11 +153,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ID, "");
                 startActivity(new Intent(getApplicationContext(), SplashActivity.class));
                 finish();
-               /* SharedHelper.putKey(getApplicationContext(), Appconstant.USERID, "");
-                startActivity(new Intent(getApplicationContext(), SplashActivity.class));
-                finish();*/
             }
         });
 

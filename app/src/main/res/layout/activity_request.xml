@@ -288,58 +288,14 @@
 
             </com.google.android.material.textview.MaterialTextView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="5dp"
-                android:orientation="horizontal">
 
-                <View
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bullet" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n Aenean commodo ligula eget dolor Aenean massa. \n Cum sociis natoque penatibus et magnis"
-                    android:textSize="11sp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/rvPolicy"
+                android:layout_height="wrap_content"/>
 
 
-                </com.google.android.material.textview.MaterialTextView>
-            </LinearLayout>
 
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="5dp"
-                android:orientation="horizontal">
-
-                <View
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bullet" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n Aenean commodo ligula eget dolor Aenean massa. \n Cum sociis natoque penatibus et magnis"
-                    android:textSize="11sp">
-
-
-                </com.google.android.material.textview.MaterialTextView>
-            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>

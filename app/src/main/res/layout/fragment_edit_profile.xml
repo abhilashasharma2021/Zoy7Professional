@@ -5,7 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.EditProfileFragment">
-
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -55,7 +60,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/normal_margin"
                 android:clipToPadding="false"
-
                 android:orientation="vertical">
 
 
@@ -63,6 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="60dp"
+                    android:id="@+id/rlProfile"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -83,7 +88,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/pro" />
+                         />
 
                 </RelativeLayout>
 
@@ -107,7 +112,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/EditTextCard"
-                    android:hint="xyz abc"
+                    android:hint="Ex: Amit Mishra"
+                    android:id="@+id/etName"
                     android:inputType="textPersonName"
                     android:layout_margin="@dimen/small_margin" />
 
@@ -120,7 +126,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/EditTextCard"
-                    android:hint="abc@xyz.fgh"
+                    android:hint="Ex: abc@xyz.com"
+                    android:id="@+id/etEmail"
                     android:inputType="textEmailAddress"
                     android:layout_margin="@dimen/small_margin" />
 
@@ -131,42 +138,106 @@
                     android:layout_marginTop="@dimen/normal_margin"
                     android:textColor="?attr/colorPrimary"/>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textview.MaterialTextView
                     style="@style/EditTextCard"
-                    android:hint="1234567890"
+                    android:hint="EX: 1234567890"
                     android:inputType="number"
                     android:maxLength="10"
+                    android:id="@+id/txMobile"
                     android:layout_margin="@dimen/small_margin" />
+
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/Body3"
-                    android:text="@string/city_state"
+                    android:text="@string/gender"
                     android:textStyle="bold"
                     android:layout_marginTop="@dimen/normal_margin"
                     android:textColor="?attr/colorPrimary"/>
 
-                <androidx.appcompat.widget.LinearLayoutCompat
+                <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/rdGroup"
+                    android:layout_margin="@dimen/small_margin"
                     android:orientation="horizontal">
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        style="@style/Spinner"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/colorOnPrimary"
-                        android:elevation="@dimen/card_elevation"
-                        android:layout_margin="@dimen/small_margin"
-                         />
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/RadioButton"
+                        android:text="@string/male"
+                        android:id="@+id/rdMale"
+                        android:buttonTint="?attr/colorPrimary"
+                        android:paddingHorizontal="@dimen/default_padding"/>
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        style="@style/Spinner"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/colorOnPrimary"
-                        android:elevation="@dimen/card_elevation"
-                        android:layout_margin="@dimen/small_margin" />
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/RadioButton"
+                        android:text="@string/female"
+                        android:id="@+id/rdFemale"
+                        android:buttonTint="?attr/colorPrimary"
+                        android:paddingHorizontal="@dimen/default_padding"/>
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </RadioGroup>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/Body3"
+                        android:text="@string/city_state"
+                        android:textStyle="bold"
+                        android:id="@+id/txBody"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:textColor="?attr/colorPrimary"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txEdit"
+                        style="@style/Body3"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginEnd="15dp"
+                        android:text="*Edit"
+
+                        android:textColor="?attr/colorPrimary"
+                        android:textStyle="bold" />
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txBody"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/EditTextCard"
+                            android:id="@+id/txState"
+                            android:layout_width="wrap_content"
+                            android:layout_margin="@dimen/small_margin" />
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/EditTextCard"
+                            android:id="@+id/txCity"
+                            android:layout_width="wrap_content"
+                            android:layout_margin="@dimen/small_margin" />
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spState"
+                            style="@style/Spinner"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/small_margin"
+                            android:layout_weight="1"
+                            android:background="?attr/colorOnPrimary"
+                            android:elevation="@dimen/card_elevation" />
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spCity"
+                            style="@style/Spinner"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/small_margin"
+                            android:layout_weight="1"
+                            android:background="?attr/colorOnPrimary"
+                            android:elevation="@dimen/card_elevation" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </RelativeLayout>
+
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/Body3"
@@ -181,6 +252,7 @@
                     android:inputType="text"
                     android:layout_height="100dp"
                     android:gravity="start"
+                    android:id="@+id/etAddress"
                     android:hint="Landmark, Near by, Road Name .............."
                     android:layout_margin="@dimen/small_margin" />
 
@@ -196,8 +268,8 @@
                     android:layout_width="200dp"
                     android:inputType="number"
                     android:maxLength="6"
-                    android:text="@={viewModel.etPinCode.data}"
-                    android:hint="462021"
+                    android:hint="Ex: 462021"
+                    android:id="@+id/etPin"
                     android:layout_margin="@dimen/small_margin" />
 
                 <com.google.android.material.button.MaterialButton
@@ -206,7 +278,6 @@
                     android:layout_width="200dp"
                     android:layout_marginTop="30dp"
                     android:layout_gravity="center"
-                    android:onClick="@{viewModel::onUpdateClick}"
                     android:layout_marginBottom="@dimen/extra_margin"
                     android:text="@string/update" />
 
@@ -215,5 +286,13 @@
         </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </androidx.core.widget.NestedScrollView>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/progressbar"
+        android:visibility="gone"/>
 </RelativeLayout>

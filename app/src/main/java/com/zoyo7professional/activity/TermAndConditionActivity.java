@@ -46,8 +46,14 @@ public class TermAndConditionActivity extends AppCompatActivity {
         binding = ActivityTermAndConditionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.ivCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         queue = SingletonRequestQueue.getInstance(this).getRequestQueue();
-        term();
+      //  term();
     }
 
 

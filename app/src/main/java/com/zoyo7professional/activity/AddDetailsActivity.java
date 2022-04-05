@@ -119,13 +119,6 @@ public class AddDetailsActivity extends AppCompatActivity {
         });
 
 
-        binding.btUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AddDetailsActivity.this, MainActivity.class
-                ));
-            }
-        });
 
 
         binding.spCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -262,6 +255,11 @@ public class AddDetailsActivity extends AppCompatActivity {
                                 Toast.makeText(AddDetailsActivity.this, "Successfully Add Details", Toast.LENGTH_SHORT).show();
                                 binding.progressBar.setVisibility(View.GONE);
 
+
+                            }
+                            else {
+                                Toast.makeText(AddDetailsActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                binding.progressBar.setVisibility(View.GONE);
 
                             }
 

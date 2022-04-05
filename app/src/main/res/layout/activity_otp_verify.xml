@@ -36,7 +36,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvEnterOtp"
             style="@style/Body1"
-            android:text="Enter OTP Send to +91 9898982299"
+            android:text=" "
             android:layout_marginTop="@dimen/default_margin"
             app:layout_constraintTop_toBottomOf="@+id/tvVerify"
             app:layout_constraintStart_toStartOf="parent"
@@ -131,6 +131,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/Body2"
+                android:id="@+id/txResend"
                 android:text="@string/didn_t_receive_otp"
                 android:paddingHorizontal="5dp"/>
 
