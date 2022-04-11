@@ -12,6 +12,12 @@ public class API {
     public static final String showProfile = "update_profile";
     public static final String cancel_policy = "cancel_policy";
     public static final String servicesStatus = "orders";
+    public static final String myBookingHistory= "my_orders";
+    public static final String addAmountToWallet = "add_to_wallet";
+    public static final String myAmount = "wallet_amount";
+    public static final String walletHistory = "wallet_history";
+    public static final String cancelOrdersRequest = "cancel_orders";
+    public static final String skills = "skills";
 
     public static final String reasonForCancel = "booking_cancellation_reasons";
 

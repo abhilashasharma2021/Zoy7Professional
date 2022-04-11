@@ -1,5 +1,6 @@
 package com.zoyo7professional.activity;
 
+import static com.zoyo7professional.ApiData.API.cancelOrdersRequest;
 import static com.zoyo7professional.ApiData.API.cancel_policy;
 import static com.zoyo7professional.ApiData.API.otpVerify;
 import static com.zoyo7professional.ApiData.API.reasonForCancel;
@@ -35,6 +36,10 @@ import com.zoyo7professional.R;
 import com.zoyo7professional.adaper.CancelPolicyAdapter;
 import com.zoyo7professional.databinding.ActivityRequestBinding;
 import com.zoyo7professional.model.CancelPolicyData;
+import com.zoyo7professional.others.AppConstats;
+import com.zoyo7professional.others.SharedHelper;
+import com.zoyo7professional.utilities.InternetConnection.InternetConnectionInterface;
+import com.zoyo7professional.utilities.InternetConnection.InternetConnectivity;
 import com.zoyo7professional.utilities.SingletonRequestQueue;
 
 import org.json.JSONArray;
@@ -50,9 +55,10 @@ ActivityRequestBinding binding;
     ArrayList<String> arrayListReasonID;
     ArrayList<String> arrayListReason;
     ArrayAdapter<String> adapterReason;
-    String strReasonId="";
+    String strReasonId="",strComments="";
 
     private CancelPolicyAdapter adapter;
+    String user_Id="";
     private ArrayList<CancelPolicyData> policyList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,26 +68,41 @@ ActivityRequestBinding binding;
         setContentView(binding.getRoot());
 
 
+        user_Id = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_ID);
+
 
         queue = SingletonRequestQueue.getInstance(this).getRequestQueue();
 
 
-        binding.btSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               cancelRequest();
-            }
-        });
+
 
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(RequestCancelActivity.this,MainActivity.class));
                 finish();
             }
         });
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(RequestCancelActivity.this, RecyclerView.VERTICAL, false);
         binding.rvPolicy.setLayoutManager(mLayoutManager);
+
+        binding.btSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                strComments=binding.etComments.getText().toString().trim();
+                InternetConnectionInterface connectivity = new InternetConnectivity();
+                if (connectivity.isConnected(getApplicationContext())) {
+                    submitCancelPolicy();
+                } else {
+                    Toast.makeText(RequestCancelActivity.this, "Please check internet connection", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+        });
 
         binding.spReason.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -99,6 +120,7 @@ ActivityRequestBinding binding;
         });
         reason_CancelPolicy();
         reason_Cancel();
+        //order_details();
 
     }
 
@@ -269,5 +291,70 @@ ActivityRequestBinding binding;
             }
         };
         queue.add(request);
+    }
+
+    public void submitCancelPolicy(){
+
+        binding.progressBar.setVisibility(View.VISIBLE);
+        StringRequest request = new StringRequest(Request.Method.POST, API.BASE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("djfkdj", response);
+                try {
+                    binding.progressBar.setVisibility(View.GONE);
+                    JSONObject jsonObject = new JSONObject(response);
+
+
+                    if (jsonObject.has("result")) {
+
+                        String msg = jsonObject.getString("result");
+                        if (msg.equals("true")) {
+
+                            String data = jsonObject.getString("data");
+
+                            JSONObject jsonData = new JSONObject(data);
+                            cancelRequest();
+                          //  Toast.makeText(RequestCancelActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+
+                        }
+                        else {
+                            Toast.makeText(RequestCancelActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                            binding.progressBar.setVisibility(View.GONE);
+                        }
+
+                    }
+
+
+                } catch (Exception ex) {
+                    Log.e("kdkkk", ex.getMessage());
+
+                }
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("jdjfdjj",error.getMessage());
+                binding.progressBar.setVisibility(View.GONE);
+            }
+
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("action",cancelOrdersRequest);
+                map.put("id","2");/* service Id*/
+                map.put("cancelled_by",user_Id);
+                map.put("cancellation_reason_id",strReasonId);
+                map.put("cancellation_reason",strComments);
+
+                return map;
+            }
+        };
+        queue.add(request);
+
     }
 }

@@ -51,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constrainedHeight="true"
+            android:layout_marginTop="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -58,7 +59,8 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/normal_margin"
+                android:layout_marginStart="16sp"
+                android:layout_marginEnd="16sp"
                 android:clipToPadding="false"
                 android:orientation="vertical">
 
@@ -66,7 +68,7 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="20dp"
                     android:id="@+id/rlProfile"
                     android:layout_height="wrap_content">
 
@@ -82,13 +84,11 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/ivProfile"
-                        style="@style/ImageViewRound"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:scaleType="fitXY"
-                         />
+                        android:scaleType="fitXY" />
 
                 </RelativeLayout>
 

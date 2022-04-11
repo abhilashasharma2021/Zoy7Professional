@@ -90,6 +90,18 @@ public class EditProfileFragment extends Fragment {
 
         Log.e("jxhjhh", user_Id.toString());
 
+
+
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),MainActivity.class));
+                getActivity().finish();
+
+
+            }
+        });
+
         queue = SingletonRequestQueue.getInstance(getActivity()).getRequestQueue();
         show_Profile(user_Id);
 
@@ -128,15 +140,7 @@ public class EditProfileFragment extends Fragment {
 
 
 
-        binding.ivBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().finish();
 
-
-
-            }
-        });
 
 
 
@@ -377,22 +381,14 @@ public class EditProfileFragment extends Fragment {
 
                                 if (!jsonObject.getString("profile_image").equals("")){
                                     try {
-                                        Picasso.get().load(path+image).into(binding.ivProfile);
+                                        Glide.with(getActivity()).load(response.getString("path")+jsonObject.getString("profile_image")).into(binding.ivProfile);
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
                                 }
-                                else {
-
-                                }
-
 
                                 Toast.makeText(getActivity(), response.getString("message"), Toast.LENGTH_SHORT).show();
-
-
-
                                 binding.progressBar.setVisibility(View.GONE);
-
 
                             }
                             else {

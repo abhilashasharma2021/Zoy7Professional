@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MyWalletActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/rlHeader"
+        android:background="@color/blue_700"
+        android:gravity="center_vertical"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:autoMirrored="true"
+            android:padding="6dp"
+            android:src="@drawable/leftarrow" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/Body3"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/ivBack"
+            android:text="@string/my_walet"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/rlHeader"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginHorizontal="@dimen/extra_margin"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="40dp"
+                android:id="@+id/iv"
+                android:layout_height="40dp"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:src="@drawable/ic_wallet"
+                android:tint="?attr/colorPrimary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Headline6"
+                android:layout_toEndOf="@+id/iv"
+                android:layout_width="100dp"
+                android:id="@+id/tx"
+                android:layout_height="wrap_content"
+                android:text="@string/my_walet" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tx1"
+                    style="@style/Headline6"
+                    android:layout_toStartOf="@+id/txAmount"
+                    android:text="₹" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Headline6"
+                    android:id="@+id/txAmount"
+                    android:layout_alignParentEnd="true"
+                    android:text="" />
+
+
+</RelativeLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="-5dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Body3"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/extra_large_margin"
+                android:text="@string/applicable_on_all_services" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvAddMoney"
+                style="@style/Body2"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:layout_marginEnd="@dimen/extra_margin"
+                android:text="Add Money"
+                android:textColor="?attr/colorPrimary" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:layout_marginHorizontal="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/normal_margin">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Body1"
+                android:text="@string/wallet_history" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_down" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+     <androidx.recyclerview.widget.RecyclerView
+         android:layout_width="match_parent"
+         android:layout_margin="10dp"
+         android:id="@+id/rvHistory"
+         android:layout_height="wrap_content">
+
+     </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

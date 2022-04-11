@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/light_gray"
+        android:orientation="horizontal">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="80dp"
+            app:cardElevation="4dp"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="4dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/ivBooking"
+                android:scaleType="fitXY"
+                android:src="@drawable/download"/>
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Post Wax"
+                android:id="@+id/tvName"
+                android:layout_height="wrap_content">
+
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:textSize="13sp"
+                    android:text="Date:"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content">
+
+
+                </com.google.android.material.textview.MaterialTextView>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:textSize="13sp"
+                    android:text=""
+                    android:id="@+id/tvDate"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content">
+
+
+                </com.google.android.material.textview.MaterialTextView>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:textSize="13sp"
+                    android:text="Time:"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content">
+
+
+                </com.google.android.material.textview.MaterialTextView>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:textSize="13sp"
+                    android:text=""
+                    android:id="@+id/tvTime"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content">
+
+
+                </com.google.android.material.textview.MaterialTextView>
+
+
+            </LinearLayout>
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:numStars="5"
+                android:theme="@style/RatingBarNew"
+                android:isIndicator="true"
+                android:scaleX=".5"
+                android:scaleY=".5"
+                android:transformPivotX="0dp"
+                android:transformPivotY="0dp"
+                android:layout_marginBottom="-26dp"
+                android:layout_marginRight="-100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Completed"
+            android:textColor="@color/orange"
+            android:textSize="13sp"
+            android:textStyle="bold">
+
+
+        </com.google.android.material.textview.MaterialTextView>
+
+    </LinearLayout>
+</RelativeLayout>

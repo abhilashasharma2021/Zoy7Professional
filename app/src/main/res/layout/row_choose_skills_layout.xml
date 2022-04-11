@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="30dp"
+        android:buttonTint="@color/blue_700"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_toEndOf="@+id/checkbox"
+        android:gravity="center"
+        android:padding="6dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/blue_bg"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txSkills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="11sp" />
+
+
+    </RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="135dp"
+        android:layout_height="35dp"
+        android:textSize="12dp"
+        android:visibility="gone"
+        android:fontFamily="@font/roboto_medium"
+        android:layout_toEndOf="@+id/checkbox"
+        android:id="@+id/btn_time"
+        style="@style/Button"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

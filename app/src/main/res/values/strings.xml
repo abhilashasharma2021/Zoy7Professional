@@ -53,6 +53,7 @@
     <string name="my_booking_history">My booking history</string>
     <string name="add_money_to">Add Money to</string>
     <string name="my_wallet">MY WALLET</string>
+    <string name="my_walet">My Wallet</string>
     <string name="proceed_to_add_money">Proceed to add money</string>
     <string name="done">Done</string>
     <string name="your_cancel_request_has_been_updated">Your cancel request has been updated !</string>
@@ -64,11 +65,16 @@
     <string name="cancel_policy">Cancel Policy</string>
     <string name="submit">Submit</string>
     <string name="comments">Comments</string>
+    <string name="applicable_on_all_services">Applicable on all services</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="add_details">Add Details</string>
     <string name="completed">Completed</string>
+    <string name="add_money">Add Money</string>
+    <string name="wallet_history">Wallet History</string>
+    <string name="skills">Skills</string>
+    <string name="select_professional_skills">Select Professional Skills</string>
 
     <string-array name="reason">
         <item>Reason for cancel</item>

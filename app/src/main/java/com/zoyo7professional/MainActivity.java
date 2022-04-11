@@ -1,5 +1,7 @@
 package com.zoyo7professional;
 
+import static com.zoyo7professional.ApiData.API.showProfile;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,17 +15,31 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
+import com.zoyo7professional.ApiData.API;
 import com.zoyo7professional.activity.HelpActivity;
 import com.zoyo7professional.activity.MyBookingHistory;
+import com.zoyo7professional.activity.MyWalletActivity;
+import com.zoyo7professional.activity.RequestCancelActivity;
 import com.zoyo7professional.activity.SplashActivity;
 import com.zoyo7professional.fragment.EditProfileFragment;
 import com.zoyo7professional.fragment.HomeFragment;
@@ -31,14 +47,25 @@ import com.zoyo7professional.others.AppConstats;
 import com.zoyo7professional.others.SharedHelper;
 import com.zoyo7professional.utilities.InternetConnection.InternetConnectionInterface;
 import com.zoyo7professional.utilities.InternetConnection.InternetConnectivity;
+import com.zoyo7professional.utilities.SingletonRequestQueue;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     NavigationView navView;
     public static DrawerLayout drawerLayout;
     Toolbar toolbar;
+    ImageView ivEdit;
     BottomNavigationView bottomNavigation;
-    RelativeLayout rlHome, rlBooking,rlHelp,rlTerm,rlLogout;
+    RelativeLayout rlHome, rlBooking,rlHelp,rlWallet,rlLogout;
+    RequestQueue  queue;
+    String user_Id="";
+    TextView txtname,txRating;
+    ImageView ivProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +74,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawerLayout);
         navView = findViewById(R.id.navView);
-        rlTerm = findViewById(R.id.rlTerm);
+        txRating = findViewById(R.id.txRating);
+        txtname = findViewById(R.id.txtname);
+        ivProfile = findViewById(R.id.ivProfile);
+        ivEdit = findViewById(R.id.ivEdit);
+        rlWallet = findViewById(R.id.rlWallet);
         rlHome = findViewById(R.id.rlHome);
         rlBooking = findViewById(R.id.rlBooking);
         rlHelp = findViewById(R.id.rlHelp);
         rlLogout = findViewById(R.id.rlLogout);
         bottomNavigation = findViewById(R.id.bottomNavigation);
 
+        queue = SingletonRequestQueue.getInstance(MainActivity.this).getRequestQueue();
+        user_Id = SharedHelper.getKey(MainActivity.this, AppConstats.USER_ID);
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -62,18 +95,32 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         toggle.syncState();
 
+        ivEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Menu menuItem = bottomNavigation.getMenu();
+                menuItem.getItem(2).setChecked(true);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new EditProfileFragment()).commit();
+                drawerLayout.closeDrawer(GravityCompat.START);
+
+            }
+        });
+
 
         bottomNavigation.setOnNavigationItemSelectedListener(this);
         rlHome.setOnClickListener(this);
         rlBooking.setOnClickListener(this);
         rlHelp.setOnClickListener(this);
-        rlTerm.setOnClickListener(this);
+        rlWallet.setOnClickListener(this);
         rlLogout.setOnClickListener(this);
 
 
         InternetConnectionInterface connectivity = new InternetConnectivity();
         if (connectivity.isConnected(getApplicationContext())) {
             if (savedInstanceState==null){
+                show_Profile();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new HomeFragment()).commit();
             }
         } else {
@@ -101,12 +148,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             case R.id.rlHelp:
                startActivity(new Intent(MainActivity.this, HelpActivity.class));
-
-            case R.id.rlTerm:
-                startActivity(new Intent(MainActivity.this, PrivacyPolicyActivity.class));
-
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.rlWallet:
+                startActivity(new Intent(MainActivity.this, MyWalletActivity.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
             case R.id.rlLogout:
-               logout();
+                logout();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
 
@@ -125,9 +174,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
 
             case R.id.navAppointment:
-/*
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new HelpFragment()).commit();
-*/
+              dialog_show_Appointment();
                 break;
 
             case R.id.navAccount:
@@ -169,6 +216,103 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+    }
+
+    public void show_Profile(){
+
+        StringRequest request = new StringRequest(Request.Method.POST, API.BASE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("bjkhjkljk", response);
+                try {
+
+                    JSONObject jsonObject = new JSONObject(response);
+
+
+                    if (jsonObject.has("result")) {
+
+                        String msg = jsonObject.getString("result");
+                        if (msg.equals("true")) {
+
+                            String data = jsonObject.getString("data");
+
+                            JSONObject jsonData = new JSONObject(data);
+
+                            txtname.setText(jsonData.getString("full_name"));
+                            txRating.setText(jsonData.getString("avg_rating"));
+                            String path=jsonObject.getString("path");
+                            String image=jsonData.getString("profile_image");
+
+
+
+                            if (!jsonData.getString("profile_image").equals("")){
+                                try {
+                                    Picasso.get().load(path+image).into(ivProfile);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            else {
+
+                            }
+
+
+                        }
+                        else {
+                            Toast.makeText(MainActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+
+                } catch (Exception ex) {
+                    Log.e("jgvkdfj", ex.getMessage());
+
+                }
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("thrtfghfg",error.getMessage());
+
+            }
+
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("action",showProfile);
+                map.put("id",user_Id);
+
+
+                return map;
+            }
+        };
+        queue.add(request);
+    }
+
+    public void dialog_show_Appointment(){
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_accept_layout);
+        dialog.setCancelable(true);
+        Button btCancel = dialog.findViewById(R.id.btCancel);
+        Button btaccept = dialog.findViewById(R.id.btaccept);
+
+        btCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,RequestCancelActivity.class));
+            }
+        });
+
+
+
+     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         dialog.show();
 
     }

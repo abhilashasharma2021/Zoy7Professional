@@ -74,11 +74,12 @@
 
                     <View
                         android:layout_width="25dp"
-                        android:layout_marginEnd="15dp"
+                        android:layout_height="3dp"
                         android:layout_below="@+id/ivEdit"
                         android:layout_alignParentEnd="true"
-                        android:background="@color/white"
-                        android:layout_height="3dp"/>
+                        android:layout_marginEnd="15dp"
+                        android:background="@color/white" />
+
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/ivProfile"
                         style="@style/ImageViewRound"
@@ -107,6 +108,7 @@
                         android:text="Harsh"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
+
                     <TextView
 
                         android:id="@+id/txSpecialist"
@@ -115,6 +117,7 @@
                         android:layout_below="@+id/txtname"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="2dp"
+                        android:visibility="gone"
                         android:text="Makeup Specialist"
                         android:textColor="@color/white"
                         android:textSize="13sp" />
@@ -261,8 +264,7 @@
                         android:layout_height="4dp"
                         android:background="@color/gray" />
                     <RelativeLayout
-                        android:id="@+id/rlTerm"
-
+                        android:id="@+id/rlWallet"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:paddingLeft="10dp">
@@ -281,7 +283,7 @@
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/roboto_regular"
                             android:paddingLeft="60dp"
-                            android:text="@string/nav_terms_policy"
+                            android:text="@string/my_walet"
                             android:textSize="15dp"
                             android:textStyle="bold" />
 

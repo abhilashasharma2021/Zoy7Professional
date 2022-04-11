@@ -1,17 +1,25 @@
 package com.zoyo7professional.activity;
 
 
+import static com.zoyo7professional.ApiData.API.myBookingHistory;
 import static com.zoyo7professional.ApiData.API.selectecity;
 import static com.zoyo7professional.ApiData.API.selectstates;
+import static com.zoyo7professional.ApiData.API.skills;
 
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,7 +30,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +52,11 @@ import com.bumptech.glide.Glide;
 import com.zoyo7professional.ApiData.API;
 import com.zoyo7professional.MainActivity;
 import com.zoyo7professional.R;
+import com.zoyo7professional.adaper.MyBookingHistoryAdapter;
+import com.zoyo7professional.adaper.ShowSkillsAdapter;
 import com.zoyo7professional.databinding.ActivityAddDetailsBinding;
+import com.zoyo7professional.model.ShowOrderData;
+import com.zoyo7professional.model.ShowSkillsData;
 import com.zoyo7professional.others.AppConstats;
 import com.zoyo7professional.others.SharedHelper;
 import com.zoyo7professional.utilities.ImageUtils;
@@ -71,7 +85,7 @@ public class AddDetailsActivity extends AppCompatActivity {
     ActivityAddDetailsBinding binding;
 
     String strName = "", strEmail = "", strCity = "", strState = "", user_Id = "", strGender = "", strAddress = "", strPin = "";
-    String stProfile = "";
+    String stProfile = "", st_SkillId = "",st_SkillName="";
     ArrayList<String> arrayListStateID;
     ArrayList<String> arrayListState;
     ArrayAdapter<String> adapterState;
@@ -81,6 +95,14 @@ public class AddDetailsActivity extends AppCompatActivity {
     ArrayAdapter<String> adapterCity;
 
     private File front_gallery_file;
+    public static ProgressBar progressBarDialog;
+    public static Dialog dialog;
+    RecyclerView rvSkills;
+    public static Button btSave;
+    public static ArrayList<String> Arr_skillsId;
+    public static ArrayList<String> Arr_skillsName;
+    ArrayList<ShowSkillsData> showSkillsArrayList = new ArrayList<>();
+
 
     RequestQueue queue;
 
@@ -117,8 +139,12 @@ public class AddDetailsActivity extends AppCompatActivity {
                 }
             }
         });
-
-
+        binding.txSkill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog_chooseSkills();
+            }
+        });
 
 
         binding.spCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -180,10 +206,13 @@ public class AddDetailsActivity extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(strPin)) {
 
                     Toast.makeText(AddDetailsActivity.this, "Please enter  your 6 digit pincode", Toast.LENGTH_SHORT).show();
+                }else if (TextUtils.isEmpty(st_SkillId)) {
+
+                    Toast.makeText(AddDetailsActivity.this, "Please choose your skill", Toast.LENGTH_SHORT).show();
                 } else {
 
 
-                    createProfile(strName, strEmail, strGender, strAddress, strPin);
+                    createProfile(strName, strEmail, strGender, strAddress, strPin,st_SkillId);
                 }
 
             }
@@ -213,7 +242,24 @@ public class AddDetailsActivity extends AppCompatActivity {
 
     }
 
-    public void createProfile(String name, String email, String strGender, String address, String pin) {
+    public void dialog_chooseSkills() {
+
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_choose_skills_layout);
+        dialog.setCancelable(true);
+        btSave = dialog.findViewById(R.id.btSave);
+        rvSkills = dialog.findViewById(R.id.rvSkills);
+        progressBarDialog = dialog.findViewById(R.id.progressBarDialog);
+        Arr_skillsId = new ArrayList<>();
+        Arr_skillsName = new ArrayList<>();
+        show_Skills();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+    }
+
+
+    public void createProfile(String name, String email, String strGender, String address, String pin,String st_SkillId) {
 
 
         AndroidNetworking.initialize(AddDetailsActivity.this);
@@ -235,6 +281,7 @@ public class AddDetailsActivity extends AppCompatActivity {
                 .addMultipartParameter("address", address)
                 .addMultipartFile("profile_image[]", front_gallery_file)
                 .addMultipartParameter("pincode", pin)
+                .addMultipartParameter("skills_id", st_SkillId)
                 .setOkHttpClient(okHttpClient)
                 .setTag("update profile successfully")
                 .setPriority(Priority.HIGH)
@@ -256,8 +303,7 @@ public class AddDetailsActivity extends AppCompatActivity {
                                 binding.progressBar.setVisibility(View.GONE);
 
 
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(AddDetailsActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                                 binding.progressBar.setVisibility(View.GONE);
 
@@ -427,4 +473,104 @@ public class AddDetailsActivity extends AppCompatActivity {
         queue.add(request);
     }
 
+    public void show_Skills() {
+
+
+        progressBarDialog.setVisibility(View.VISIBLE);
+        StringRequest request = new StringRequest(Request.Method.POST, API.BASE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("hjhjh", response);
+                try {
+                    progressBarDialog.setVisibility(View.GONE);
+                    JSONObject jsonObject = new JSONObject(response);
+
+
+                    if (jsonObject.has("result")) {
+
+                        String msg = jsonObject.getString("result");
+                        if (msg.equals("true")) {
+
+
+                            String data = jsonObject.getString("data");
+                            JSONArray jsonArray = new JSONArray(data);
+                            showSkillsArrayList = new ArrayList<>();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                ShowSkillsData skillsData = new ShowSkillsData();
+                                JSONObject jsonData = jsonArray.getJSONObject(i);
+                                skillsData.setSkillId(jsonData.getString("id"));
+                                skillsData.setSkillName(jsonData.getString("skill"));
+                                showSkillsArrayList.add(skillsData);
+
+
+                            }
+
+                            rvSkills.setHasFixedSize(true);
+                            rvSkills.setLayoutManager(new GridLayoutManager(AddDetailsActivity.this,2));
+                            rvSkills.setAdapter(new ShowSkillsAdapter(AddDetailsActivity.this, showSkillsArrayList));
+
+                        }
+
+
+                    }
+
+
+                } catch (Exception ex) {
+                    Log.e("jgvkdfj", ex.getMessage());
+
+                }
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBarDialog.setVisibility(View.GONE);
+            }
+
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("action", skills);
+                return map;
+            }
+        };
+        queue.add(request);
+
+    }
+
+
+    public void GetSkillId() {
+        for (int i = 0; i < Arr_skillsId.size(); i++) {
+            if (st_SkillId.equals("")) {
+                st_SkillId = Arr_skillsId.get(i);
+
+            }
+            else {
+                st_SkillId = st_SkillId + "," + Arr_skillsId.get(i);
+
+            }
+            Log.e("ghdfhfgxjh", st_SkillId);
+
+        }
+
+    }
+    public void GetSkillName() {
+        for (int i = 0; i < Arr_skillsName.size(); i++) {
+            if (st_SkillName.equals("")) {
+                st_SkillName = Arr_skillsName.get(i);
+
+            }
+            else {
+                st_SkillName = st_SkillName + "," + Arr_skillsName.get(i);
+                binding.txSkill.setText(st_SkillName);
+
+            }
+            Log.e("name", st_SkillName);
+
+        }
+
+    }
 }
