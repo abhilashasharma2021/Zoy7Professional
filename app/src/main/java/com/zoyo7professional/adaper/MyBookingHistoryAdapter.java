@@ -45,7 +45,7 @@ public class MyBookingHistoryAdapter extends RecyclerView.Adapter<MyBookingHisto
             holder.rowbookinghistorylayoutBinding.ratingBar.setRating(Float.parseFloat(modelObject.getRating()));
 
             try {
-                Picasso.get().load(modelObject.getServicePath()+modelObject.getServiceImage()).into(holder.rowbookinghistorylayoutBinding.ivBooking);
+                Picasso.with(mcontext).load(modelObject.getServicePath()+modelObject.getServiceImage()).into(holder.rowbookinghistorylayoutBinding.ivBooking);
             } catch (Exception e) {
                 e.printStackTrace();
             }

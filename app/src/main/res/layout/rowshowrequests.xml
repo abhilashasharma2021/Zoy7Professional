@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -15,8 +14,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
@@ -37,51 +36,9 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <RelativeLayout
-                android:id="@+id/rl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txName"
-                android:layout_gravity="center">
-
-                <androidx.appcompat.widget.AppCompatRatingBar
-                    android:id="@+id/ratingStar"
-                    style="?attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:saveEnabled="true"
-                    android:theme="@style/RatingBar"
-                    android:visibility="visible">
-
-                </androidx.appcompat.widget.AppCompatRatingBar>
-
-                <ImageView
-                    android:id="@+id/ivRating"
-                    android:layout_width="25dp"
-                    android:visibility="gone"
-                    android:layout_height="25dp"
-                    android:src="@drawable/star" />
 
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/txRating"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ratingStar"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/roboto_medium"
-                    android:gravity="center"
-                    android:maxLength="9"
-                    android:text=""
-                    android:textSize="10dp">
 
-
-                </com.google.android.material.textview.MaterialTextView>
-
-
-            </RelativeLayout>
 
         </LinearLayout>
 
@@ -98,110 +55,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
+
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+
+                    android:layout_marginEnd="5dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text=""
                     android:textSize="14sp">
 
 
                 </com.google.android.material.textview.MaterialTextView>
+
+
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/txServiceName"
+                    android:id="@+id/txDetails"
                     android:layout_width="wrap_content"
-                    android:layout_below="@+id/txName"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/txName"
+
                     android:fontFamily="@font/roboto_medium"
-                    android:text=""
                     android:textSize="14sp">
 
 
                 </com.google.android.material.textview.MaterialTextView>
-
-
-                <RelativeLayout
-                    android:layout_width="100dp"
-                    android:id="@+id/rlBtn"
-                    android:layout_alignParentEnd="true"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btaccept"
-                        android:layout_width="100dp"
-                        android:layout_height="35dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="20dp"
-                        android:backgroundTint="@color/orange"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="@string/pending"
-
-                        android:textAllCaps="false"
-                        android:textSize="10dp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        app:cornerRadius="5dp" />
-
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btOngoing"
-                        android:layout_width="100dp"
-                        android:layout_height="35dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="20dp"
-                        android:backgroundTint="@color/blue_700"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="@string/ongoing"
-                        android:textAllCaps="false"
-                        android:textSize="10dp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        app:cornerRadius="5dp" />
-
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btCompleted"
-                        android:layout_width="100dp"
-                        android:layout_height="35dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="20dp"
-                        android:backgroundTint="@color/green"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="@string/completed"
-                        android:textAllCaps="false"
-                        android:textSize="10dp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        app:cornerRadius="5dp" />
-
-
-                </RelativeLayout>
 
 
             </RelativeLayout>
 
             <com.borjabravo.readmoretextview.ReadMoreTextView
-                android:id="@+id/txDesp"
-                android:visibility="gone"
+
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:maxLength="25" />
 
             <TextView
-                android:id="@+id/txDespAll"
+                android:id="@+id/txDesp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rlNew"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/roboto_regular"
-                android:text=""
-                android:maxLines="2"
                 android:textAlignment="textStart"
                 android:textSize="11sp"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
 
             <LinearLayout
@@ -259,6 +158,21 @@
 
             </LinearLayout>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btDetails"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:backgroundTint="@color/blue_700"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_toEndOf="@id/txName"
+                android:text="@string/details"
+                android:textAllCaps="false"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:cornerRadius="5dp" />
 
         </LinearLayout>
 

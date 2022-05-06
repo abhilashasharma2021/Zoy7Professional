@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/extra_large_padding"
-                android:text="@string/splash_text"
+                android:text=""
                 android:fontFamily="@font/roboto_regular" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

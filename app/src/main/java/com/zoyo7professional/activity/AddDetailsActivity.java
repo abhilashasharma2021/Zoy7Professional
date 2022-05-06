@@ -5,6 +5,7 @@ import static com.zoyo7professional.ApiData.API.myBookingHistory;
 import static com.zoyo7professional.ApiData.API.selectecity;
 import static com.zoyo7professional.ApiData.API.selectstates;
 import static com.zoyo7professional.ApiData.API.skills;
+import static com.zoyo7professional.ApiData.ApiNetworking.update_profile;
 
 
 import androidx.appcompat.app.AlertDialog;
@@ -25,7 +26,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -50,6 +55,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.zoyo7professional.ApiData.API;
+import com.zoyo7professional.ApiData.ApiNetworking;
 import com.zoyo7professional.MainActivity;
 import com.zoyo7professional.R;
 import com.zoyo7professional.adaper.MyBookingHistoryAdapter;
@@ -102,19 +108,24 @@ public class AddDetailsActivity extends AppCompatActivity {
     public static ArrayList<String> Arr_skillsId;
     public static ArrayList<String> Arr_skillsName;
     ArrayList<ShowSkillsData> showSkillsArrayList = new ArrayList<>();
+/*
 
+    public static final int MAX_LINES = 3;
+    public static final String TWO_SPACES = " ";
+*/
+
+    String myReallyLongText = "Bacon ipsum dolor amet porchetta venison ham fatback alcatra tri-tip, turducken strip steak sausage rump burgdoggen pork loin. Spare ribs filet mignon salami, strip steak ball tip shank frankfurter corned beef venison. Pig pork belly pork chop andouille. Porchetta pork belly ground round, filet mignon bresaola chuck swine shoulder leberkas jerky boudin. Landjaeger pork chop corned beef, tri-tip brisket rump pastrami flank.";
 
     RequestQueue queue;
-
+  TextView txt_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+       // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
 
         binding = ActivityAddDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         queue = SingletonRequestQueue.getInstance(this).getRequestQueue();
-
 
         user_Id = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_ID);
 
@@ -137,6 +148,13 @@ public class AddDetailsActivity extends AppCompatActivity {
                         strGender = "Female";
                         break;
                 }
+            }
+        });
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              startActivity(new Intent(AddDetailsActivity.this,OtpVerifyActivity.class));
+               finish();
             }
         });
         binding.txSkill.setOnClickListener(new View.OnClickListener() {
@@ -166,10 +184,10 @@ public class AddDetailsActivity extends AppCompatActivity {
         binding.spState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ((TextView) adapterView.getChildAt(0)).setTextSize(15);
+
 
                 strState = arrayListStateID.get(i);
-
+                ((TextView) adapterView.getChildAt(0)).setTextSize(15);
                 choose_city(strState);
             }
 
@@ -187,9 +205,9 @@ public class AddDetailsActivity extends AppCompatActivity {
         binding.btUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                strName = binding.etName.getText().toString().trim();
 
                 strEmail = binding.etEmail.getText().toString().trim();
+                strName = binding.etName.getText().toString().trim();
                 strAddress = binding.etAddress.getText().toString().trim();
                 strPin = binding.etPin.getText().toString().trim();
 
@@ -209,9 +227,9 @@ public class AddDetailsActivity extends AppCompatActivity {
                 }else if (TextUtils.isEmpty(st_SkillId)) {
 
                     Toast.makeText(AddDetailsActivity.this, "Please choose your skill", Toast.LENGTH_SHORT).show();
-                } else {
+                }
 
-
+                else {
                     createProfile(strName, strEmail, strGender, strAddress, strPin,st_SkillId);
                 }
 
@@ -270,11 +288,11 @@ public class AddDetailsActivity extends AppCompatActivity {
 
         Log.e("hjhjh", user_Id);
         Log.e("hjhjh", stProfile);
-        AndroidNetworking.upload("https://zoy7.loopdevelopers.in/adminZoy7/api/v2/process.php")
-                .addMultipartParameter("action", "update_profile")
-                .addMultipartParameter("id", user_Id)
-                .addMultipartParameter("full_name", name)
-                .addMultipartParameter("email_id", email)
+        AndroidNetworking.upload(ApiNetworking.BASEURL)
+                .addMultipartParameter("action",update_profile)
+                .addMultipartParameter("id",user_Id)
+                .addMultipartParameter("full_name",name)
+                .addMultipartParameter("email_id",email)
                 .addMultipartParameter("state_id", strState)
                 .addMultipartParameter("city_id", strCity)
                 .addMultipartParameter("gender", strGender)
@@ -298,6 +316,14 @@ public class AddDetailsActivity extends AppCompatActivity {
 
                                 Log.e("checkdata", data);
                                 JSONObject jsonObject = new JSONObject(data);
+                                if ( !jsonObject.getString("city").equals("")){
+                                    SharedHelper.putKey(AddDetailsActivity.this, AppConstats.CITY_NAME, jsonObject.getString("city"));
+                                }
+                                SharedHelper.putKey(AddDetailsActivity.this, AppConstats.CITY_ID, jsonObject.getString("city_id"));
+                                SharedHelper.putKey(AddDetailsActivity.this, AppConstats.STATE_ID, jsonObject.getString("state_id"));
+                                SharedHelper.putKey(AddDetailsActivity.this, AppConstats.EMAIL_ID, jsonObject.getString("email_id"));
+                                SharedHelper.putKey(AddDetailsActivity.this, AppConstats.MOBILE_NO, jsonObject.getString("mobile_no"));
+
                                 startActivity(new Intent(AddDetailsActivity.this, MainActivity.class));
                                 Toast.makeText(AddDetailsActivity.this, "Successfully Add Details", Toast.LENGTH_SHORT).show();
                                 binding.progressBar.setVisibility(View.GONE);
@@ -381,7 +407,7 @@ public class AddDetailsActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("thrtfghfg", error.getMessage());
+
 
             }
 

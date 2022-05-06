@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MyBookingHistory">
-
+    tools:context=".activity.AllRequestActivity">
     <RelativeLayout
         android:id="@+id/rlHeader"
         android:layout_width="match_parent"
@@ -28,24 +27,30 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="15dp"
             android:layout_toEndOf="@+id/ivBack"
-            android:text="@string/my_booking_history"
+            android:text="@string/my_request"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
 
     </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHistory"
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/rlHeader"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp" />
+
+
+    </com.baoyz.widget.PullRefreshLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,18 +62,17 @@
             android:id="@+id/animationView"
             android:layout_width="match_parent"
             android:layout_height="350dp"
-
             app:lottie_autoPlay="true"
-            app:lottie_fileName="nobooking.json"
+            app:lottie_fileName="noappointment.json"
             app:lottie_loop="true" />
 
         <TextView
             android:layout_width="match_parent"
-            android:textColor="@color/orange"
+            android:textColor="@color/blue_200"
             android:gravity="center"
             android:textStyle="bold"
             android:layout_below="@+id/animationView"
-            android:text="No Booking \n Available"
+            android:text="No Appointment \n Available"
             android:layout_height="wrap_content">
 
 

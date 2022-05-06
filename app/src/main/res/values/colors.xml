@@ -3,8 +3,8 @@
     <color name="blue_200">#42C1EC</color>
     <color name="blue_500">#08B2EC</color>
     <color name="blue_700">#0C7DC2</color>
-    <color name="violent_200">#7137C8</color>
-    <color name="violent_700">#421782</color>
+    <color name="violent_200">#FF5722</color>
+    <color name="violent_700">#FF5722</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 

@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+      //  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -104,72 +104,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-/*
-    public void sendOtp(String stMobile) {
-
-        dialog.setTitle("Sending");
-        dialog.setMessage("please wait....");
-        dialog.setCancelable(false);
-
-        try {
-            dialog.show();
-        } catch (WindowManager.BadTokenException e) {
-            Log.e("dskjdsjd", e.getMessage(), e);
-        }
-
-
-        Map<String, String> param = new HashMap<>();
-
-        Log.e("hsxghs", stMobile);
-        param.put("action", login);
-        param.put("mobile_no", stMobile);
-        Call<LoginData> call = APIClient.getAPIClient().login(param);
-
-        Log.e("hjhjh", call.toString());
-
-        call.enqueue(new Callback<LoginData>() {
-            @Override
-            public void onResponse(@NonNull Call<LoginData> call, @NonNull Response<LoginData> response) {
-                if (!response.isSuccessful()) {
-                    dialog.hide();
-                    ReturnErrorToast.showToast(LoginActivity.this);
-                }
-
-                LoginData loginData = response.body();
-
-                Log.e("bhbhnmn", loginData.getMessage());
-
-                if (loginData != null) {
-
-                    if (loginData.getResult()) {
-
-                        LoginData.Data userData = loginData.getData();
-
-                        Log.e("smkckm", userData.toString());
-
-                        //  SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ID, userData.getUserID());
-
-
-                        startActivity(new Intent(getApplicationContext(), OtpVerifyActivity.class));
-                        finishAffinity();
-                        dialog.hide();
-
-                    } else {
-                        dialog.hide();
-                        Toast.makeText(LoginActivity.this, loginData.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<LoginData> call, @NonNull Throwable t) {
-
-                Log.e("snlkcxlsk", t.getMessage());
-                dialog.hide();
-            }
-        });
-    }
-*/
 
 
     public void sendOtp() {

@@ -42,7 +42,7 @@ public class TermAndConditionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+     //   AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
         binding = ActivityTermAndConditionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

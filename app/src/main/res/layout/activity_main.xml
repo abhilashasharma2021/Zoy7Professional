@@ -62,23 +62,31 @@
                     android:background="@color/blue_700"
                     android:layout_height="190dp">
 
-                    <ImageView
-                        android:id="@+id/ivEdit"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:src="@drawable/ic_edit" />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:id="@+id/rlEdit"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivEdit"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:src="@drawable/ic_edit" />
 
-                    <View
-                        android:layout_width="25dp"
-                        android:layout_height="3dp"
-                        android:layout_below="@+id/ivEdit"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="15dp"
-                        android:background="@color/white" />
+                        <View
+                            android:layout_width="25dp"
+                            android:layout_height="3dp"
+                            android:layout_below="@+id/ivEdit"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="15dp"
+                            android:background="@color/white" />
+
+
+                    </RelativeLayout>
+
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/ivProfile"
@@ -128,10 +136,24 @@
                         android:layout_below="@+id/txSpecialist"
                         android:layout_centerHorizontal="true">
 
+                        <androidx.appcompat.widget.AppCompatRatingBar
+                            android:id="@+id/ratingStar"
+                            style="?attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:saveEnabled="true"
+                            android:theme="@style/RatingBar"
+                            android:visibility="visible">
+
+                        </androidx.appcompat.widget.AppCompatRatingBar>
+
 
                         <ImageView
                             android:id="@+id/ivRating"
                             android:layout_width="25dp"
+                            android:visibility="gone"
                             android:layout_height="25dp"
                             android:src="@drawable/star" />
 
@@ -142,7 +164,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="4dp"
-                            android:layout_toEndOf="@+id/ivRating"
+                            android:layout_toEndOf="@+id/ratingStar"
                             android:fontFamily="@font/roboto_medium"
                             android:text="4.2 Rating"
                             android:textColor="@color/white"

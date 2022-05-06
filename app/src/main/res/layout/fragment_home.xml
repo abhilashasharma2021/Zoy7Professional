@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomeFragment">
 
 
@@ -12,29 +12,31 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@color/blue_700">
-<RelativeLayout
-    android:layout_width="wrap_content"
-     android:id="@+id/rlMenu"
-    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/menu"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="25dp"
-        android:src="@drawable/menu">
+        <RelativeLayout
+            android:id="@+id/rlMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    </ImageView>
+            <ImageView
+                android:id="@+id/menu"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/menu">
+
+            </ImageView>
 
 
-
-</RelativeLayout>
+        </RelativeLayout>
 
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:visibility="visible"
+            android:id="@+id/cardCity"
             android:layout_below="@+id/rlMenu"
             android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
@@ -46,11 +48,74 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/default_margin">
 
-                <androidx.appcompat.widget.AppCompatSpinner
+                <RelativeLayout
+                    android:id="@+id/rlDown"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/default_padding"
-                    android:theme="@style/Spinner" />
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textview.MaterialTextView
+
+
+                        android:id="@+id/tvCity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/iVDown"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_arrow_down"
+                        />
+
+
+                </RelativeLayout>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:visibility="gone"
+            android:id="@+id/cardSpin"
+            android:layout_below="@+id/rlMenu"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp">
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/default_margin">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rlSpin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spCity"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+
+                            android:padding="@dimen/default_padding"
+                            android:theme="@style/Spinner"
+                            android:visibility="visible" />
+
+                </RelativeLayout>
+
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -60,31 +125,36 @@
     </RelativeLayout>
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/rlHeader">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/rlHeader"
             android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/ll"
                 android:orientation="horizontal"
                 android:weightSum="3">
 
 
                 <RelativeLayout
                     android:layout_width="150dp"
-                    android:layout_weight="1"
+                    android:layout_height="40dp"
                     android:layout_margin="10dp"
-                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/rlPending"
                     android:background="@drawable/orange_bg"
-                    android:layout_height="40dp">
+                    android:gravity="center">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txPending1"
@@ -99,8 +169,8 @@
                         android:id="@+id/txPending"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" "
                         android:layout_toEndOf="@+id/txPending1"
+                        android:text=" "
                         android:textColor="@color/white"
                         android:textSize="10sp"
                         android:textStyle="bold" />
@@ -110,11 +180,12 @@
 
                 <RelativeLayout
                     android:layout_width="150dp"
-                    android:layout_weight="1"
+                    android:layout_height="40dp"
                     android:layout_margin="10dp"
-                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/rlOngoing"
                     android:background="@drawable/blue_bg"
-                    android:layout_height="40dp">
+                    android:gravity="center">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txOngoing1"
@@ -127,9 +198,9 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txOngoing"
-                        android:layout_toEndOf="@+id/txOngoing1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/txOngoing1"
                         android:text=""
                         android:textColor="@color/white"
                         android:textSize="10sp"
@@ -141,11 +212,12 @@
 
                 <RelativeLayout
                     android:layout_width="150dp"
-                    android:layout_weight="1"
+                    android:layout_height="40dp"
                     android:layout_margin="10dp"
-                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/rlCompleted"
                     android:background="@drawable/green_bg"
-                    android:layout_height="40dp">
+                    android:gravity="center">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txCompleted1"
@@ -160,8 +232,8 @@
                         android:id="@+id/txCompleted"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" "
                         android:layout_toEndOf="@+id/txCompleted1"
+                        android:text=" "
                         android:textColor="@color/white"
                         android:textSize="10sp"
                         android:textStyle="bold" />
@@ -170,13 +242,55 @@
                 </RelativeLayout>
             </LinearLayout>
 
+                <com.baoyz.widget.PullRefreshLayout
+                    android:id="@+id/swipeRefreshLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/ll">
 
-         <androidx.recyclerview.widget.RecyclerView
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:id="@+id/rvOrders"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvOrders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.baoyz.widget.PullRefreshLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:id="@+id/rlAnim"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content">
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_centerInParent="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_fileName="nodata.json"
+                        app:lottie_loop="true" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textColor="@color/orange"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        android:layout_below="@+id/animationView"
+                        android:text="No Data \n Available"
+                        android:layout_height="wrap_content">
+
+
+                    </TextView>
+
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
         </LinearLayout>
-    </ScrollView>
+
 
     <ProgressBar
         android:id="@+id/progressBar"

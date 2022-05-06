@@ -3,6 +3,7 @@ package com.zoyo7professional.activity;
 
 import static com.zoyo7professional.ApiData.API.login;
 import static com.zoyo7professional.ApiData.API.otpVerify;
+import static com.zoyo7professional.ApiData.API.profile_status;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.zoyo7professional.ApiData.API;
+import com.zoyo7professional.MainActivity;
 import com.zoyo7professional.databinding.ActivityLoginBinding;
 import com.zoyo7professional.databinding.ActivityOtpVerifyBinding;
 import com.zoyo7professional.others.AppConstats;
@@ -44,22 +46,27 @@ public class OtpVerifyActivity extends AppCompatActivity {
 ActivityOtpVerifyBinding binding;
     RequestQueue queue;
     String mobile_No="";
-    String strOne = "", strTwo = "", strthree = "", strFour = "",strcombine="",get_otp="";
+    String strOne = "", strTwo = "", strthree = "", strFour = "",strcombine="",get_otp="",user_Id="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+    //    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
 
         binding= ActivityOtpVerifyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         mobile_No = SharedHelper.getKey(getApplicationContext(), AppConstats.MOBILE_NO);
         get_otp = SharedHelper.getKey(getApplicationContext(), AppConstats.GET_OTP);
+        user_Id = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_ID);
 
+
+        Log.e("jjhjhk", user_Id );
 
         binding.tvEnterOtp.setText("Enter OTP Send to"+ mobile_No);
 
         queue = SingletonRequestQueue.getInstance(this).getRequestQueue();
+
+
 
        binding.txResend.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -207,7 +214,12 @@ ActivityOtpVerifyBinding binding;
                             String data = jsonObject.getString("data");
 
                             JSONObject jsonData = new JSONObject(data);
-                            startActivity(new Intent(OtpVerifyActivity.this,AddDetailsActivity.class));
+
+                            if (!jsonData.getString("city").equals("")){
+                                SharedHelper.putKey(getApplicationContext(), AppConstats.CITY_NAME, jsonData.getString("city"));
+                            }
+                            manage_Status(jsonData.getString("id"));
+                        //    startActivity(new Intent(OtpVerifyActivity.this,AddDetailsActivity.class));
                             Toast.makeText(OtpVerifyActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
 
 
@@ -327,5 +339,62 @@ ActivityOtpVerifyBinding binding;
 
 
     }
+    public void manage_Status(String userId) {
+
+
+
+        StringRequest request = new StringRequest(Request.Method.POST, API.BASE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("hjhjh", response);
+                try {
+
+                    JSONObject jsonObject = new JSONObject(response);
+
+
+                    if (jsonObject.has("result")) {
+
+                        String msg = jsonObject.getString("result");
+                        if (msg.equals("true")) {
+                            String data = jsonObject.getString("data");
+                            if (data.equals("0")){
+                                startActivity(new Intent(OtpVerifyActivity.this,AddDetailsActivity.class));
+                            }else if (data.equals("1")){
+                                startActivity(new Intent(OtpVerifyActivity.this, MainActivity.class));
+
+                            }
+
+                        }
+
+
+                    }
+
+
+                } catch (Exception ex) {
+                    Log.e("jgvkdfj", ex.getMessage());
+
+                }
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("action", profile_status);
+                map.put("id", userId);
+                return map;
+            }
+        };
+        queue.add(request);
+
+    }
+
 }
 

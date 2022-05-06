@@ -21,8 +21,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.razorpay.PaymentResultListener;
 import com.zoyo7professional.ApiData.API;
 import com.zoyo7professional.R;
+import com.zoyo7professional.RazorpayPayment.RazorPayImp;
 import com.zoyo7professional.databinding.ActivityAddMoneyBinding;
 import com.zoyo7professional.databinding.ActivityOtpVerifyBinding;
 import com.zoyo7professional.others.AppConstats;
@@ -37,19 +39,22 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddMoneyActivity extends AppCompatActivity {
+public class AddMoneyActivity extends AppCompatActivity implements PaymentResultListener {
     ActivityAddMoneyBinding binding;
     RequestQueue queue;
-    String userId="",stAmount="";
+    RazorPayImp razorPayImp = new RazorPayImp();
+    String userId="",stAmount="",MOBILE_NO="",EMAIL_ID="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+      //  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
 
         binding= ActivityAddMoneyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         userId = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_ID);
+        EMAIL_ID = SharedHelper.getKey(getApplicationContext(), AppConstats.EMAIL_ID);
+        MOBILE_NO = SharedHelper.getKey(getApplicationContext(), AppConstats.MOBILE_NO);
         queue = SingletonRequestQueue.getInstance(this).getRequestQueue();
 
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +76,10 @@ public class AddMoneyActivity extends AppCompatActivity {
                 else {
                     InternetConnectionInterface connectivity = new InternetConnectivity();
                     if (connectivity.isConnected(getApplicationContext())) {
-                        addMoney(userId,stAmount);
+
+                        razorPayImp.startPayment(AddMoneyActivity.this, stAmount, "INR", "Zoy7",MOBILE_NO,EMAIL_ID);
+
+                        //addMoney(userId,stAmount);
                     } else {
                         Toast.makeText(AddMoneyActivity.this, "Please check internet connection", Toast.LENGTH_SHORT).show();
                     }
@@ -158,4 +166,15 @@ public class AddMoneyActivity extends AppCompatActivity {
 
 
     }
-}
+
+    @Override
+    public void onPaymentSuccess(String s) {
+        Log.e("abhkdksj", "onPayment: "+ s);
+        addMoney(userId,stAmount);
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Log.e("abhkdksj", "onPaymentError: "+ s);
+    }
+    }

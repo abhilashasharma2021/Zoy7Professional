@@ -1,8 +1,30 @@
 package com.zoyo7professional.model;
 
 public class ShowOrderData {
-private String serviceName;
-private String serviceImage;
+    private String serviceName;
+    private String serviceImage;
+    private String serviceId;
+
+    public String getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(String serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public ShowOrderData() {
+    }
+
+    public String getServiceTittle() {
+        return serviceTittle;
+    }
+
+    public void setServiceTittle(String serviceTittle) {
+        this.serviceTittle = serviceTittle;
+    }
+
+    private String serviceTittle;
 
     public String getServiceImage() {
         return serviceImage;
@@ -21,10 +43,19 @@ private String serviceImage;
     }
 
     private String servicePath;
-private String serviceDescription;
-private String orderDate;
-private String orderTime;
-private String rating;
+    private String serviceDescription;
+    private String orderDate;
+    private String orderTime;
+    private String rating;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getServiceName() {
         return serviceName;

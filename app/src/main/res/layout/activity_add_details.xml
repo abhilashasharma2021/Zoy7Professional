@@ -67,46 +67,45 @@
                     android:layout_marginTop="80dp"
                     android:id="@+id/rlProfile"
                     android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatImageView
+                    <RelativeLayout
                         android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center"
-                        android:visibility="gone"
-                        android:src="@drawable/circleblue">
+                        android:background="@drawable/circleblue"
+                        android:layout_height="100dp">
 
 
-                    </androidx.appcompat.widget.AppCompatImageView>
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/ivProfile"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/pro">
 
+                        </de.hdodenhof.circleimageview.CircleImageView>
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/ivProfile"
-                        style="@style/ImageViewRound"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/pro" />
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginTop="50dp"
+                            android:layout_toRightOf="@+id/ivProfile"
+                            android:src="@drawable/camera" />
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivPickImage"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/camera"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/small_paging"
-                    android:layout_marginStart="45dp"
-                    android:layout_marginTop="-60dp"/>
+
+
+
+
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/Body3"
                     android:text="@string/name"
                     android:textStyle="bold"
-                    android:layout_marginTop="@dimen/extra_large_margin"
+                    android:layout_marginTop="25dp"
                     android:textColor="?attr/colorPrimary"/>
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -115,6 +114,11 @@
                     android:id="@+id/etName"
                     android:inputType="textPersonName"
                     android:layout_margin="@dimen/small_margin" />
+                <com.borjabravo.readmoretextview.ReadMoreTextView
+                    android:id="@+id/txt_id"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/Body3"
@@ -252,7 +256,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/extra_margin"
-                    android:text="@string/update" />
+                    android:text="@string/sava" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

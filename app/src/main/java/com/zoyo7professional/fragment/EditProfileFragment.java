@@ -4,6 +4,7 @@ import static com.zoyo7professional.ApiData.API.otpVerify;
 import static com.zoyo7professional.ApiData.API.selectecity;
 import static com.zoyo7professional.ApiData.API.selectstates;
 import static com.zoyo7professional.ApiData.API.showProfile;
+import static com.zoyo7professional.ApiData.ApiNetworking.update_profile;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -36,6 +37,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.zoyo7professional.ApiData.API;
+import com.zoyo7professional.ApiData.ApiNetworking;
 import com.zoyo7professional.MainActivity;
 import com.zoyo7professional.R;
 import com.zoyo7professional.activity.AddDetailsActivity;
@@ -67,7 +69,7 @@ public class EditProfileFragment extends Fragment {
 
     private FragmentEditProfileBinding binding;
     private View view;
-    String user_Id="";
+
     RequestQueue queue;
     private File front_gallery_file;
     String stProfile = "",strGender = "", strCity = "", strState = "",strName = "", strEmail = "",strAddress = "", strPin = "";
@@ -79,16 +81,23 @@ public class EditProfileFragment extends Fragment {
     ArrayList<String> arrayListCityID;
     ArrayList<String> arrayListCity;
     ArrayAdapter<String> adapterCity;
-
+    String PROFILE_IV="",PATH="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+      //  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
         binding = FragmentEditProfileBinding.inflate(getLayoutInflater(), container, false);
         view = binding.getRoot();
-        user_Id = SharedHelper.getKey(getActivity(), AppConstats.USER_ID);
 
-        Log.e("jxhjhh", user_Id.toString());
+        strState = SharedHelper.getKey(getActivity(), AppConstats.STATE_ID);
+        strCity = SharedHelper.getKey(getActivity(), AppConstats.CITY_ID);
+        PROFILE_IV = SharedHelper.getKey(getActivity(), AppConstats.PROFILE_IV);
+        PATH = SharedHelper.getKey(getActivity(), AppConstats.PATH);
+
+
+        Log.e("bhjkhjkh", strState );
+        Log.e("bhjkhjkh", strCity );
+
 
 
 
@@ -103,7 +112,7 @@ public class EditProfileFragment extends Fragment {
         });
 
         queue = SingletonRequestQueue.getInstance(getActivity()).getRequestQueue();
-        show_Profile(user_Id);
+        show_Profile();
 
 
         binding.rdGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -148,7 +157,7 @@ public class EditProfileFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 strCity = arrayListCityID.get(i);
-
+                Log.e("ghfhgfjg", strCity );
                 ((TextView) adapterView.getChildAt(0)).setTextSize(15);
 
             }
@@ -164,10 +173,12 @@ public class EditProfileFragment extends Fragment {
         binding.spState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ((TextView) adapterView.getChildAt(0)).setTextSize(15);
+
 
                 strState = arrayListStateID.get(i);
+                ((TextView) adapterView.getChildAt(0)).setTextSize(15);
 
+                Log.e("ghfhgfjg", strState );
                 choose_city(strState);
             }
 
@@ -177,11 +188,6 @@ public class EditProfileFragment extends Fragment {
 
             }
         });
-
-
-
-
-
 
 
         binding.rlProfile.setOnClickListener(new View.OnClickListener() {
@@ -214,7 +220,16 @@ public class EditProfileFragment extends Fragment {
                 strAddress = binding.etAddress.getText().toString().trim();
                 strPin = binding.etPin.getText().toString().trim();
 
-                update_profile(strName, strEmail, strGender, strAddress, strPin);
+                if (strCity.isEmpty()){
+                    Toast.makeText(getActivity(), "Please Choose city", Toast.LENGTH_SHORT).show();
+                }else  if (strState.isEmpty()){
+                    Toast.makeText(getActivity(), "Please Choose state", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    update_profile(strName, strEmail, strGender, strAddress, strPin,strCity,strState);
+
+                }
+
 
 
             }
@@ -230,100 +245,95 @@ public class EditProfileFragment extends Fragment {
 
     }
 
-    public void show_Profile(String user_Id){
+    public void show_Profile(){
 
+     String    user_Id = SharedHelper.getKey(getActivity(), AppConstats.USER_ID);
 
         binding.progressBar.setVisibility(View.VISIBLE);
-        StringRequest request = new StringRequest(Request.Method.POST, API.BASE_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("bjkhjkljk", response);
-                try {
-                    binding.progressBar.setVisibility(View.GONE);
-                    JSONObject jsonObject = new JSONObject(response);
+
+        AndroidNetworking.initialize(getActivity());
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder().protocols(Arrays.asList(Protocol.HTTP_1_1))
+                .build();
+        AndroidNetworking.initialize(getActivity(), okHttpClient);
+
+        AndroidNetworking.post(ApiNetworking.BASEURL)
+                .addBodyParameter("action",update_profile)
+                .addBodyParameter("id", user_Id)
+                .setOkHttpClient(okHttpClient)
+                .setTag("SHOW profile successfully")
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("rtgytfh", response.toString());
+                        binding.progressBar.setVisibility(View.GONE);
 
 
-                    if (jsonObject.has("result")) {
+                        try {
+                            if (response.getString("result").equals("true")) {
 
-                        String msg = jsonObject.getString("result");
-                        if (msg.equals("true")) {
+                                String data = response.getString("data");
 
-                            String data = jsonObject.getString("data");
+                                JSONObject jsonData = new JSONObject(data);
 
-                            JSONObject jsonData = new JSONObject(data);
+                                binding.etName.setText(jsonData.getString("full_name"));
+                                binding.etEmail.setText(jsonData.getString("email_id"));
+                                binding.txMobile.setText(jsonData.getString("mobile_no"));
+                                binding.etAddress.setText(jsonData.getString("address"));
+                                binding.etPin.setText(jsonData.getString("pincode"));
+                                binding.txSkills.setText(jsonData.getString("skills"));
 
-                            binding.etName.setText(jsonData.getString("full_name"));
-                            binding.etEmail.setText(jsonData.getString("email_id"));
-                            binding.txMobile.setText(jsonData.getString("mobile_no"));
-                            binding.etAddress.setText(jsonData.getString("address"));
-                            binding.etPin.setText(jsonData.getString("pincode"));
-                            String path=jsonObject.getString("path");
-                            String image=jsonData.getString("profile_image");
-                            binding.txState.setText(jsonData.getString("state"));
-                            binding.txCity.setText(jsonData.getString("city"));
+                                String path=response.getString("path");
 
+                                binding.txState.setText(jsonData.getString("state"));
+                                binding.txCity.setText(jsonData.getString("city"));
 
-
-                            if (jsonData.getString("gender").equals("male")){
-                                binding.rdMale.setChecked(true);
-                            }else {
-                                binding.rdFemale.setChecked(true);
-                            }
-                            Log.e("show",jsonObject.getString("path")+jsonData.getString("profile_image") );
-
-
-                            if (!jsonData.getString("profile_image").equals("")){
-                                try {
-                                    Picasso.get().load(path+image).into(binding.ivProfile);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+                                if (jsonData.getString("gender").equals("male")){
+                                    binding.rdMale.setChecked(true);
+                                }else {
+                                    binding.rdFemale.setChecked(true);
                                 }
+                                Log.e("show",response.getString("path")+jsonData.getString("profile_image") );
+
+
+                                if (!jsonData.getString("profile_image").equals("")){
+                                    try {
+                                        Picasso.with(getActivity()).load(response.getString("path")+jsonData.getString("profile_image")).into(binding.ivProfile);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                               /* SharedHelper.putKey(getActivity(), AppConstats.CITY_ID, jsonData.getString("city_id"));
+                                SharedHelper.putKey(getActivity(), AppConstats.STATE_ID, jsonData.getString("state_id"));
+                                SharedHelper.putKey(getActivity(), AppConstats.PROFILE_IV, jsonData.getString("profile_image"));
+                                SharedHelper.putKey(getActivity(), AppConstats.PATH, response.getString("path"));
+*/
+
+
                             }
                             else {
-
+                                Toast.makeText(getActivity(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                binding.progressBar.setVisibility(View.GONE);
                             }
 
-
-                        }
-                        else {
-                            Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            Log.e("rtyrtyhtr", e.getMessage());
                             binding.progressBar.setVisibility(View.GONE);
                         }
-
                     }
 
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.e("regrtht", anError.getMessage());
+                        binding.progressBar.setVisibility(View.GONE);
 
-                } catch (Exception ex) {
-                    Log.e("jgvkdfj", ex.getMessage());
-
-                }
-
-
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("thrtfghfg",error.getMessage());
-                binding.progressBar.setVisibility(View.GONE);
-            }
-
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<>();
-                map.put("action",showProfile);
-                map.put("id",user_Id);
-
-
-                return map;
-            }
-        };
-        queue.add(request);
+                    }
+                });
     }
 
-    public void update_profile(String strName, String strEmail, String strGender, String strAddress, String strPin){
-
+    public void update_profile( String strName, String strEmail, String strGender, String strAddress, String strPin,String city_id, String state_id){
+        String    user_Id = SharedHelper.getKey(getActivity(), AppConstats.USER_ID);
         AndroidNetworking.initialize(getActivity());
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder().protocols(Arrays.asList(Protocol.HTTP_1_1))
                 .build();
@@ -332,13 +342,13 @@ public class EditProfileFragment extends Fragment {
 
         Log.e("hjhjh", user_Id);
         Log.e("hjhjh", stProfile);
-        AndroidNetworking.upload("https://zoy7.loopdevelopers.in/adminZoy7/api/v2/process.php")
-                .addMultipartParameter("action", "update_profile")
+        AndroidNetworking.upload(ApiNetworking.BASEURL)
+                .addMultipartParameter("action",update_profile)
                 .addMultipartParameter("id", user_Id)
                 .addMultipartParameter("full_name", strName)
                 .addMultipartParameter("email_id", strEmail)
-                .addMultipartParameter("state_id", strState)
-                .addMultipartParameter("city_id", strCity)
+                .addMultipartParameter("state_id", state_id)
+                .addMultipartParameter("city_id", city_id)
                 .addMultipartParameter("gender", strGender)
                 .addMultipartParameter("address", strAddress)
                 .addMultipartFile("profile_image[]", front_gallery_file)
@@ -366,6 +376,7 @@ public class EditProfileFragment extends Fragment {
                                 binding.etAddress.setText(jsonObject.getString("address"));
                                 binding.etPin.setText(jsonObject.getString("pincode"));
 
+                                binding.txSkills.setText(jsonObject.getString("skills"));
 
                                 String path=response.getString("path");
                                 String image=jsonObject.getString("profile_image");
@@ -373,7 +384,7 @@ public class EditProfileFragment extends Fragment {
                                 Log.e("update",response.getString("path")+jsonObject.getString("profile_image") );
 
 
-                                if (jsonObject  .getString("gender").equals("male")){
+                                if (jsonObject .getString("gender").equals("male")){
                                     binding.rdMale.setChecked(true);
                                 }else {
                                     binding.rdFemale.setChecked(true);
@@ -381,11 +392,17 @@ public class EditProfileFragment extends Fragment {
 
                                 if (!jsonObject.getString("profile_image").equals("")){
                                     try {
-                                        Glide.with(getActivity()).load(response.getString("path")+jsonObject.getString("profile_image")).into(binding.ivProfile);
+                                    //    Glide.with(getActivity()).load(response.getString("path")+jsonObject.getString("profile_image")).into(binding.ivProfile);
+                                        Picasso.with(getActivity()).load(response.getString("path")+jsonObject.getString("profile_image")).into(binding.ivProfile);
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
                                 }
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new EditProfileFragment()).commit();
+                                SharedHelper.putKey(getActivity(), AppConstats.CITY_ID, jsonObject.getString("city_id"));
+                                SharedHelper.putKey(getActivity(), AppConstats.STATE_ID, jsonObject.getString("state_id"));
+                                SharedHelper.putKey(getActivity(), AppConstats.PROFILE_IV, jsonObject.getString("profile_image"));
+                                SharedHelper.putKey(getActivity(), AppConstats.PATH, response.getString("path"));
 
                                 Toast.makeText(getActivity(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                 binding.progressBar.setVisibility(View.GONE);

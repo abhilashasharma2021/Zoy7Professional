@@ -25,95 +25,15 @@
                 android:layout_marginEnd="25dp"
                 android:src="@drawable/cross" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card"
-                android:layout_width="80dp"
-                android:layout_below="@+id/ivCancel"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="4dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/download"/>
-
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/card"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Post-wax lotion"
-                android:textSize="14sp"
-                android:textStyle="bold">
-
-
-            </com.google.android.material.textview.MaterialTextView>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_below="@+id/txName"
-                android:id="@+id/rl"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.AppCompatRatingBar
-                    android:id="@+id/ratingStar"
-                    style="?attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:isIndicator="false"
-                    android:visibility="gone"
-                    android:numStars="5"
-                    android:saveEnabled="true"
-                    android:theme="@style/RatingBar">
-
-                </androidx.appcompat.widget.AppCompatRatingBar>
-
-                <ImageView
-                    android:id="@+id/ivRating"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/star" />
-
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/txRating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_toEndOf="@+id/ivRating"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="4.2 Rating"
-                    android:textSize="10dp">
-
-
-                </com.google.android.material.textview.MaterialTextView>
-
-
-
-
-
-            </RelativeLayout>
 
             <TextView
                 android:id="@+id/tx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_below="@+id/rl"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\nAenean commodo ligula eget dolor. Aenean massa.\nCum sociis natoque penatibus et magnis"
+                android:text=""
                 android:textAlignment="center"
                 android:textSize="13sp" />
 

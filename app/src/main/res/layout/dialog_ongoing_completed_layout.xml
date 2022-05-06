@@ -3,16 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="30dp"
-        android:layout_height="wrap_content">
-
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_centerInParent="true"
+    android:layout_marginLeft="10dp"
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,6 +34,7 @@
                 android:layout_below="@+id/ivCancel"
                 android:layout_height="80dp"
                 android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
                 app:cardCornerRadius="4dp"
                 app:cardElevation="4dp">
 
@@ -58,10 +54,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/card"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="3dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text=""
-                android:textSize="13sp"
+                android:text="Post-wax lotion"
+                android:textSize="14sp"
                 android:textStyle="bold">
 
 
@@ -83,11 +78,11 @@
             </com.google.android.material.textview.MaterialTextView>
 
             <RelativeLayout
-                android:id="@+id/rl"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_below="@+id/txService"
-                android:layout_centerHorizontal="true">
+                android:id="@+id/rl"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatRatingBar
                     android:id="@+id/ratingStar"
@@ -111,19 +106,23 @@
 
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvRating"
+                    android:id="@+id/txRating"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
                     android:layout_below="@+id/ratingStar"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="2dp"
                     android:layout_toEndOf="@+id/ivRating"
                     android:fontFamily="@font/roboto_medium"
-                    android:text=""
+                    android:gravity="center"
+                    android:text="4.2 Rating"
                     android:textSize="10dp">
 
 
                 </com.google.android.material.textview.MaterialTextView>
+
+
+
 
 
             </RelativeLayout>
@@ -134,33 +133,19 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
                 android:textAlignment="center"
                 android:textSize="13sp" />
 
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txDefault"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txDesp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/greybg"
-                android:fontFamily="@font/roboto_medium"
-                android:padding="5dp"
-                android:text="@string/deduct_charges_from_wallet_for_cod"
-                android:textColor="@color/blue_700"
-                android:textSize="12sp" />
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/txDesp"
+                android:layout_marginTop="3dp"
                 android:gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/txDefault"
                 android:orientation="vertical">
 
 
@@ -172,53 +157,23 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
-                        android:textSize="13sp"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
-                        android:textStyle="bold"
                         android:text="@string/addresssys"
-                        android:layout_height="wrap_content">
+                        android:textSize="13sp"
+                        android:textStyle="bold">
 
 
                     </com.google.android.material.textview.MaterialTextView>
+
                     <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:textSize="13sp"
-                        android:text=""
                         android:id="@+id/tvAddress"
-                        android:fontFamily="@font/roboto_regular"
-                        android:textStyle="bold"
-                        android:layout_height="wrap_content">
-
-
-                    </com.google.android.material.textview.MaterialTextView>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
-                        android:textSize="13sp"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
-                        android:textStyle="bold"
-                        android:text="@string/mobilesys"
-                        android:layout_height="wrap_content">
-
-
-                    </com.google.android.material.textview.MaterialTextView>
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:textSize="13sp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:textStyle="bold"
-                        android:id="@+id/tvNumber"
                         android:text=""
-                        android:layout_height="wrap_content">
+                        android:textSize="13sp"
+                        android:textStyle="bold">
 
 
                     </com.google.android.material.textview.MaterialTextView>
@@ -234,21 +189,54 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
-                        android:textSize="13sp"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
-                        android:textStyle="bold"
-                        android:text="@string/paymentStatus"
-                        android:layout_height="wrap_content">
+                        android:text="@string/mobilesys"
+                        android:textSize="13sp"
+                        android:textStyle="bold">
 
 
                     </com.google.android.material.textview.MaterialTextView>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text=""
+                        android:textSize="13sp"
+                        android:textStyle="bold">
+
+
+                    </com.google.android.material.textview.MaterialTextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
-                        android:textSize="13sp"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
-                        android:textStyle="bold"
+                        android:text="@string/paymentStatus"
+                        android:textSize="13sp"
+                        android:textStyle="bold">
+
+
+                    </com.google.android.material.textview.MaterialTextView>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="COC (Cash On Delivery)"
-                        android:layout_height="wrap_content">
+                        android:textSize="13sp"
+                        android:textStyle="bold">
 
 
                     </com.google.android.material.textview.MaterialTextView>
@@ -259,8 +247,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_margin="20dp"
+                    android:orientation="horizontal"
                     android:weightSum="2">
 
 
@@ -273,28 +261,30 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
-                            android:textSize="14sp"
-                            android:text="Date:"
+                            android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_regular"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content">
+                            android:text="Date:"
+                            android:textSize="14sp"
+                            android:textStyle="bold">
 
 
                         </com.google.android.material.textview.MaterialTextView>
+
                         <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:textSize="14sp"
-                            android:text=""
                             android:id="@+id/tvDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_regular"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content">
+                            android:text=""
+                            android:textSize="14sp"
+                            android:textStyle="bold">
 
 
                         </com.google.android.material.textview.MaterialTextView>
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -304,22 +294,23 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
-                            android:textSize="14sp"
-                            android:text="Time:"
+                            android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_regular"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content">
+                            android:text="Time:"
+                            android:textSize="14sp"
+                            android:textStyle="bold">
 
 
                         </com.google.android.material.textview.MaterialTextView>
+
                         <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:textStyle="bold"
-                            android:text=""
                             android:id="@+id/tvTime"
-                            android:layout_height="wrap_content">
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text=""
+                            android:textSize="14sp"
+                            android:textStyle="bold">
 
 
                         </com.google.android.material.textview.MaterialTextView>
@@ -329,73 +320,54 @@
 
                 </LinearLayout>
 
-
-
-
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btCancel"
-                        android:layout_width="140dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:layout_margin="10dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        android:backgroundTint="@color/light_grey"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Cancel"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"
-                        android:textSize="10sp"
-                        app:cornerRadius="5dp" />
+                    android:weightSum="2"
+                    android:layout_below="@+id/loti_animation"
+                    android:layout_height="wrap_content">
+
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btaccept"
+                        android:id="@+id/btOk"
                         android:layout_width="140dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:layout_margin="10dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
                         android:backgroundTint="@color/orange"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="@string/accept"
-                        android:textStyle="bold"
+                        android:text="@string/cancel"
+                        android:layout_marginEnd="15dp"
                         android:textAllCaps="false"
-                        android:textSize="10dp"
+                        android:textSize="13sp"
                         app:cornerRadius="5dp" />
+
+
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btAlreadyAccept"
+                        android:id="@+id/btStart"
                         android:layout_width="140dp"
                         android:layout_height="50dp"
+                        android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:visibility="gone"
-                        android:layout_margin="10dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
                         android:backgroundTint="@color/blue_700"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="Accepted"
-                        android:textStyle="bold"
+                        android:text="@string/start"
                         android:textAllCaps="false"
-                        android:textSize="10dp"
+                        android:textSize="13sp"
                         app:cornerRadius="5dp" />
 
 
                 </LinearLayout>
+
+
             </LinearLayout>
+
 
 
 
         </RelativeLayout>
 
     </LinearLayout>
-    </ScrollView>
+</ScrollView>
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
@@ -403,5 +375,5 @@
         android:layout_height="50dp"
         android:layout_centerInParent="true"
         android:indeterminateDrawable="@drawable/progressbar"
-        android:visibility="gone"></ProgressBar>
+        android:visibility="gone"/>
 </RelativeLayout>

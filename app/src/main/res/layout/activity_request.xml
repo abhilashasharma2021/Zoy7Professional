@@ -71,8 +71,10 @@
 
                         <ImageView
                             android:layout_width="match_parent"
+                            android:id="@+id/ivService"
+                            android:scaleType="fitXY"
                             android:layout_height="match_parent"
-                            android:src="@drawable/download"></ImageView>
+                            android:src="@drawable/download"/>
 
 
                     </com.google.android.material.card.MaterialCardView>
@@ -93,7 +95,7 @@
                             android:numStars="5"
                             android:saveEnabled="true"
                             android:theme="@style/RatingBar"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
                         </androidx.appcompat.widget.AppCompatRatingBar>
 
@@ -101,18 +103,21 @@
                             android:id="@+id/ivRating"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:visibility="gone"
                             android:src="@drawable/star" />
 
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/txRating"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/tvRating"
+                            android:layout_width="80dp"
+                            android:gravity="center"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="2dp"
                             android:layout_toEndOf="@+id/ivRating"
                             android:fontFamily="@font/roboto_medium"
-                            android:text="4.2 Rating"
+                            android:text=""
+                            android:layout_below="@+id/ratingStar"
                             android:textSize="10dp">
 
 
@@ -134,22 +139,30 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Post-wax lotion"
+                        android:id="@+id/txName"
                         android:textSize="13sp">
 
 
                     </com.google.android.material.textview.MaterialTextView>
 
-
                     <TextView
-                        android:id="@+id/tx"
+                        android:id="@+id/txService"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/rl"
                         android:layout_marginEnd="5dp"
 
                         android:fontFamily="@font/roboto_regular"
-                        android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\nAenean commodo ligula eget dolor. Aenean massa.\nCum sociis natoque penatibus et magnis"
+                        android:textAlignment="textStart"
+                        android:textSize="11sp" />
+
+
+                    <TextView
+                        android:id="@+id/txDesp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+
+                        android:fontFamily="@font/roboto_regular"
                         android:textAlignment="textStart"
                         android:textSize="11sp" />
 
@@ -174,7 +187,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_regular"
-                            android:text="08/12/2021"
+                            android:id="@+id/tvDate"
                             android:textSize="13sp"
                             android:textStyle="bold">
 
@@ -197,7 +210,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_regular"
-                            android:text="03.00 PM"
+                            android:text=""
+                            android:id="@+id/tvTime"
                             android:textSize="13sp"
                             android:textStyle="bold">
 

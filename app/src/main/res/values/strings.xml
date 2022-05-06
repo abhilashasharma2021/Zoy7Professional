@@ -61,9 +61,11 @@
     <string name="ongoing">Ongoing</string>
     <string name="deduct_charges_from_wallet_for_cod">Deduct charges from wallet For COD</string>
     <string name="accept">Accept</string>
+    <string name="pending">Pending</string>
     <string name="request_cancel">Request Cancel</string>
     <string name="cancel_policy">Cancel Policy</string>
     <string name="submit">Submit</string>
+    <string name="more">More</string>
     <string name="comments">Comments</string>
     <string name="applicable_on_all_services">Applicable on all services</string>
 
@@ -75,6 +77,12 @@
     <string name="wallet_history">Wallet History</string>
     <string name="skills">Skills</string>
     <string name="select_professional_skills">Select Professional Skills</string>
+    <string name="sava">Save</string>
+    <string name="my_request">My Request</string>
+    <string name="details">Details</string>
+    <string name="cancel">Cancel</string>
+    <string name="start">Start</string>
+
 
     <string-array name="reason">
         <item>Reason for cancel</item>
